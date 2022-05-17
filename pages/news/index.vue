@@ -1,0 +1,64 @@
+<template>
+  <div class="news-last" style="padding-top: 1px;">
+    <div class="container">
+      <div class="breadcrumbs">
+        <ul>
+          <li>
+            <NuxtLink to="/"> Baş sahypa </NuxtLink>
+          </li>
+        
+          <li>Täzelikler</li>
+        </ul>
+      </div>
+      
+      <div class="row">
+        <div
+          v-for="(item, index) in data"
+          :key="index"
+          class="col-sm-6 col-md-4 py-2"
+        >
+          <NuxtLink :to="'/news/' + item.id" class="news-single">
+            <img :src="item.image" alt="News" />
+            <div class="text">
+              <div class="title">
+                {{
+                  item["title_" + $store.state.currentLang]
+                    ? item["title_" + $store.state.currentLang]
+                    : item.title
+                }}
+              </div>
+
+              <div class="description">
+                {{
+                  item["description_" + $store.state.currentLang]
+                    ? item["description_" + $store.state.currentLang]
+                    : item.description
+                }}
+              </div>
+
+              <div class="date">{{ item.created_at }}</div>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      data: [],
+    };
+  },
+
+  async fetch() {
+    const res = await this.$axios.get("/news/tazeliks/?ordering=-created_at");
+    this.data = res.data.results;
+  },
+};
+</script>
+
+<style>
+</style>
