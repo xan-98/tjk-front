@@ -70,7 +70,13 @@
 
         <div class="right-col">
           <div class="status">täze</div>
-          <div class="name">{{ pr.title }}</div>
+          <div class="name">
+            {{
+              pr["title_" + $store.state.currentLang]
+                ? pr["title_" + $store.state.currentLang]
+                : pr.title
+            }}
+          </div>
 
           <div class="price">{{ pr.price }} TMT</div>
 

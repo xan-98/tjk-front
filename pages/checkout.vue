@@ -141,12 +141,20 @@ export default {
           if (res.data.status == "success") {
             this.$store.commit("clearCart");
             this.$router.push("/check");
+          }else
+          if (res.data.status == 'online'){
+            console.log(res.data);
+            window.open(res.data.url, '_self')
+          }else{
+              this.toast('Ýalňyşlyk bar täzeden barlaň')
           }
+
+      
         })
         .catch((err) => {
           this.toast('Ýalňyşlyk bar täzeden barlaň')
           if (err.response.data.username) console.log("Email öň bar");
-          else console.log("Ýalňyşlyk bar täzeden barlaň");
+          else console.log(err);
         });
     },
 

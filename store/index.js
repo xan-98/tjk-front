@@ -33,6 +33,8 @@ export const mutations = {
         }else{
             state.cart.push(pr)
         }
+
+        setCartLocalStorage(state.cart)
     },
 
     minusCart(state, pr) {
@@ -47,6 +49,8 @@ export const mutations = {
         }else{
             console.log('product not found ! cart');
         }
+
+        setCartLocalStorage(state.cart)
     },
 
     plusCart(state, pr) {
@@ -56,6 +60,8 @@ export const mutations = {
         }else{
             console.log('product not found ! cart');
         }
+
+        setCartLocalStorage(state.cart)
     },
 
     deleteCart(state, pr) {
@@ -65,10 +71,15 @@ export const mutations = {
         }else{
             console.log('product not found ! cart');
         }
+
+
+        setCartLocalStorage(state.cart)
     },
 
     clearCart(state){
         state.cart= []
+        
+        setCartLocalStorage(state.cart)
     },
 
     setCategory(state, cats) {
@@ -90,6 +101,16 @@ export const mutations = {
     setSearch(state, s) {
         state.search = s
     },
+
+
+
+
+
+    // local storage
+
+    catFromStorage(state, cart){
+        state.cart = cart;
+    }
 }
 
 
@@ -106,4 +127,10 @@ export const getters = {
     getCatById: (state) => (id) => {
         return state.category.find(cat => cat.id == id)
     }
+}
+
+
+
+function setCartLocalStorage(cart){
+    window.localStorage.setItem("cart",JSON.stringify(cart))
 }
