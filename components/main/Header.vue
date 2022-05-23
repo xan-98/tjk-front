@@ -21,7 +21,7 @@
           <div class="right-col">
             <form @submit="goSearch" class="search">
               <input v-model="search" type="text" placeholder="Gözle" />
-              <BIconSearch @click="goSearch"/>
+              <BIconSearch @click="goSearch" />
             </form>
 
             <div class="action-bar">
@@ -33,35 +33,51 @@
 
                 <NuxtLink v-else to="/login">
                   <b-icon-person></b-icon-person>
-                  <div class="title">Login</div>
+                  <div class="title">Giriş</div>
                 </NuxtLink>
               </div>
 
               <NuxtLink to="/favorites" class="favorite">
                 <b-icon-heart></b-icon-heart>
-                <div class="title">{{ $tr.t('Halananlar') }}</div>
+                <div class="title">{{ $tr.t("Halananlar") }}</div>
               </NuxtLink>
 
-              <NuxtLink to="/cart" class="cart">
-                <img src="~/assets/img/cart-bag.svg" alt="cart" />
-                <div class="title">Cart</div>
-                <div v-if="$store.state.cart.length" class="count">{{ $store.state.cart.length }}</div>
-              </NuxtLink>
+              <div class="cart">
+                <NuxtLink to="/cart">
+                  <img src="~/assets/img/cart-bag.svg" alt="cart" />
+                  <div class="title">Sebet</div>
+                  <div v-if="$store.state.cart.length" class="count">
+                    {{ $store.state.cart.length }}
+                  </div>
+                </NuxtLink>
+
+                <CartHoverList />
+              </div>
             </div>
           </div>
 
-          <NuxtLink to="#" class="m-cart">
+          <NuxtLink to="/cart" class="m-cart">
             <img src="~/assets/img/cart-bag.svg" alt="cart" />
-            <div class="count">1</div>
+            <div class="title">Sebet</div>
+            <div v-if="$store.state.cart.length" class="count">
+              {{ $store.state.cart.length }}
+            </div>
           </NuxtLink>
         </div>
 
-        <div class="m-search">
+        <form @submit="goSearch" class="m-search">
+          <input v-model="search" type="text" placeholder="Gözle" />
+          <button class="s-btn" @click="goSearch">
+            <BIconSearch  />
+          </button>
+        </form>
+
+        <!-- <div class="m-search">
           <input type="text" name="search" placeholder="Gözle" />
           <button class="s-btn">
             <BIconSearch />
           </button>
-        </div>
+        </div> -->
 
         <nav>
           <ul>
@@ -72,13 +88,13 @@
                   : cat.title
               }}</NuxtLink>
             </li>
-            <li>
+            <!-- <li>
               <NuxtLink to="/new-products" class="new-color">täze önümler</NuxtLink>
-            </li>
+            </li> -->
           </ul>
         </nav>
       </div>
-  <!-- MOBILE ############################################################################## -->
+      <!-- MOBILE ############################################################################## -->
       <div class="menu-slide">
         <div class="close-btn" @click="isActive = !isActive">x</div>
         <ul>
@@ -89,25 +105,29 @@
                 : cat.title
             }}</NuxtLink>
           </li>
-          <li>
+          <!-- <li>
             <NuxtLink to="/new-products" class="new-color">Täze önümler</NuxtLink>
-          </li>
+          </li> -->
         </ul>
 
         <div class="action-bar">
-          <NuxtLink to="/profile" class="profile-icon" v-if="this.$auth.loggedIn">
+          <NuxtLink
+            to="/profile"
+            class="profile-icon"
+            v-if="this.$auth.loggedIn"
+          >
             <b-icon-person></b-icon-person>
             <span>{{ $auth.user.first_name }}</span>
           </NuxtLink>
 
           <NuxtLink to="/login" class="profile-icon" v-else>
             <b-icon-person></b-icon-person>
-            <span>Login</span>
+            <span>Giriş</span>
           </NuxtLink>
 
           <NuxtLink to="/favorites" class="favorit-icon">
             <BIconHeart />
-            <span>Favorite</span>
+            <span>Halananlar</span>
           </NuxtLink>
         </div>
 
@@ -119,10 +139,12 @@
 
         <ul class="contact-l">
           <li>
-            <a :href="'tel:'+$store.state.info.phone"> <BIconTelephone />{{ $store.state.info.phone }} </a>
+            <a :href="'tel:' + $store.state.info.phone">
+              <BIconTelephone />{{ $store.state.info.phone }}
+            </a>
           </li>
           <li>
-            <a :href="'mailto:'+$store.state.info.email">
+            <a :href="'mailto:' + $store.state.info.email">
               <BIconEnvelope />{{ $store.state.info.email }}
             </a>
           </li>
@@ -160,7 +182,7 @@ export default {
   data() {
     return {
       isActive: false,
-      search:''
+      search: "",
     };
   },
   methods: {
@@ -168,11 +190,11 @@ export default {
     //   console.log(this);
     // }
 
-    goSearch(event){
+    goSearch(event) {
       event.preventDefault();
-      this.$store.commit('setSearch', this.search)
-      this.$router.push('/search?search=' + this.search)
-    }
+      this.$store.commit("setSearch", this.search);
+      this.$router.push("/search?search=" + this.search);
+    },
   },
 
   mounted() {
@@ -186,11 +208,11 @@ export default {
 
   async fetch() {
     const res = await this.$axios.get("/products/categories");
-    this.$store.commit('setCategory', res.data.results)
+    this.$store.commit("setCategory", res.data.results);
 
-    if(this.$auth.loggedIn){
+    if (this.$auth.loggedIn) {
       const favs = await this.$axios.get("/getfavorite");
-      this.$store.commit('setFavorites', favs.data.results)
+      this.$store.commit("setFavorites", favs.data.results);
     }
   },
 };

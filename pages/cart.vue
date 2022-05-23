@@ -7,10 +7,10 @@
             <div class="title">
               <div class="row">
                 <div class="col">
-                  <h4><b>Shopping Cart</b></h4>
+                  <h4><b>Söwda sebedi</b></h4>
                 </div>
                 <div class="col align-self-center text-right text-muted">
-                  {{ $store.state.cart.length }} items
+                  {{ $store.state.cart.length }} harytlar
                 </div>
               </div>
             </div>
@@ -18,12 +18,12 @@
               <div class="row main align-items-center">
                 <div class="col-2"></div>
                 <div class="col">
-                  <div class="row"><b>Title</b></div>
+                  <div class="row"><b>Ady</b></div>
                 </div>
                 <div class="col-2"></div>
-                <div class="col-2">Price</div>
+                <div class="col-2">Bahasy</div>
 
-                <div class="col-2">Sum</div>
+                <div class="col-2">jemi</div>
               </div>
             </div>
             <div
@@ -67,23 +67,23 @@
             <div class="back-to-shop">
               <NuxtLink to="/new-products">
                 &leftarrow;
-                <span class="text-muted">Back to shop</span>
+                <span class="text-muted">Söwda dowam ediň</span>
                 </NuxtLink>
             </div>
           </div>
           <div class="col-md-4 summary">
             <div>
-              <h5><b>Summary</b></h5>
+              <h5><b>Jemi</b></h5>
             </div>
             <hr />
             <div class="row">
               <div class="col" style="padding-left: 0">
-                Items {{ $store.state.cart.length }}
+                Harytlar {{ $store.state.cart.length }}
               </div>
               <div class="col text-right">TMT {{ getSum() }}</div>
             </div>
             <form>
-              <p>SHIPPING</p>
+              <p>Eltip berme</p>
               <select v-model="shipping" @change="shippingChange()">
                 <option class="text-muted" value="asgabat">
                   Aşgabat - 15 TMT
@@ -97,10 +97,10 @@
               class="row"
               style="border-top: 1px solid rgba(0, 0, 0, 0.1); padding: 2vh 0"
             >
-              <div class="col">TOTAL PRICE</div>
+              <div class="col">JEMI BAHASY</div>
               <div class="col text-right">{{ getTotal() }} TMT</div>
             </div>
-            <NuxtLink to="/checkout" class="btn" v-if="$store.state.cart.length">CHECKOUT</NuxtLink>
+            <NuxtLink to="/checkout" class="btn" v-if="$store.state.cart.length">Sargydy tassykla</NuxtLink>
           </div>
         </div>
       </div>

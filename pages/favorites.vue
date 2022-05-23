@@ -6,7 +6,7 @@
           <li>
             <NuxtLink to="/"> Baş sahypa </NuxtLink>
           </li>
-          <li>Favorites</li>
+          <li>Halananlar</li>
         </ul>
       </div>
 

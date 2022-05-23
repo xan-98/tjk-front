@@ -9,11 +9,11 @@
           <li>
             <NuxtLink
               v-if="pr.category != undefined"
-              :to="'/products/' + pr.category[0].id"
+              :to="'/products/' + pr.category.id"
               >{{
-                pr.category[0]["title_" + $store.state.currentLang]
-                  ? pr.category[0]["title_" + $store.state.currentLang]
-                  : pr.category[0].title
+                pr.category["title_" + $store.state.currentLang]
+                  ? pr.category["title_" + $store.state.currentLang]
+                  : pr.category.title
               }}</NuxtLink
             >
           </li>
@@ -91,11 +91,11 @@
 
             <ul>
               <li
-                v-for="(s, index) in pr.size"
+                v-for="(s, index) in pr.sizes"
                 :key="index"
                 @click="selectSize(s.title)"
               >
-                <div
+                <div v-if="s.value > 0"
                   class="item"
                   :class="{ active: pr.activeSize == s.title ? true : false }"
                 >
@@ -118,7 +118,7 @@
         </div>
       </div>
 
-      <div class="info-tab">
+      <!-- <div class="info-tab">
         <b-tabs content-class="mt-4">
           <b-tab title="Harytlary yzyna gaýtarmak we çalyşmak" active>
             <p>
@@ -136,7 +136,7 @@
             <p>I'm the second</p>
           </b-tab>
         </b-tabs>
-      </div>
+      </div> -->
 
       <div class="pr-other" v-if="products.length > 1">
         <h3>Baglanyşykly önümler</h3>
@@ -178,7 +178,7 @@ export default {
     this.isFav = this.isFavoriteFunction();
 
     const res = await this.$axios.get(
-      `/products/products/?category=${product.data.category[0].id}&ordering=-created&limit=4`
+      `/products/products/?category=${product.data.category.id}&ordering=-created&limit=4`
     );
     this.products = res.data.results;
   },
@@ -195,8 +195,17 @@ export default {
 
     addToCart(){
         if(this.pr.activeSize){
-            this.$store.commit("addCart", { ...this.pr } );
-            this.toast('Sebede goşuldy')
+            let size_i = this.pr.sizes.findIndex(x => x.title == this.pr.activeSize);
+            
+            if (this.pr.sizes[size_i].value <  this.pr.amount ){
+              this.toast(`Bu ölçegden diňe ${this.pr.sizes[size_i].value} sany galdy`)
+            }else{
+              this.pr.sizes[size_i].value -= this.pr.amount
+              console.log(this.pr);
+              this.$store.commit("addCart", { ...this.pr } );
+              this.toast('Sebede goşuldy')
+            }
+            
         }else{
             this.toast('Razmeri saýlaň')
         }
@@ -230,7 +239,7 @@ export default {
       }
 
       else
-      this.toast('Please Login')
+      this.toast('Birinji ulgama giriň')
     },
 
     isFavoriteFunction() {
@@ -258,4 +267,5 @@ export default {
 </script>
 
 <style>
+
 </style>

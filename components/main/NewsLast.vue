@@ -1,7 +1,11 @@
 <template>
   <div class="news-last">
     <div class="container">
-      <h3>Soňky Täzelikler</h3>
+
+      <div class="title">
+        <h3>Soňky täzelikler</h3>
+        <a href="/news" class="link">Hemmesini görkez</a>
+      </div>
 
       <div class="row">
         <div
@@ -32,7 +36,6 @@
             </div>
           </NuxtLink>
         </div>
-
       </div>
     </div>
   </div>

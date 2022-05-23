@@ -11,10 +11,38 @@
                 <div>jins toplumy</div>
               </h1>
             </NuxtLink>
+            <div class="address">
+              {{
+                $store.state.info["address_" + $store.state.currentLang]
+                  ? $store.state.info["address_" + $store.state.currentLang]
+                  : $store.state.info.address
+              }}
+            </div>
             <div class="contacts">
               <a :href="'tel:' + $store.state.info.phone">
                 <BIconTelephone />{{ $store.state.info.phone }}
               </a>
+
+              <a :href="'tel:' + $store.state.info.phone2">
+                <BIconTelephone style="opacity: 0" />{{
+                  $store.state.info.phone2
+                }}
+              </a>
+
+              <a :href="'tel:' + $store.state.info.phone3">
+                <BIconTelephone style="opacity: 0" />{{
+                  $store.state.info.phone3
+                }}
+              </a>
+            </div>
+
+            <div class="contacts">
+              <a :href="'fax:' + $store.state.info.fax">
+                <BIconPrinter></BIconPrinter>{{ $store.state.info.fax }}
+              </a>
+            </div>
+
+            <div class="contacts">
               <a :href="'mailto:' + $store.state.info.email">
                 <BIconEnvelope></BIconEnvelope>{{ $store.state.info.email }}
               </a>
@@ -36,14 +64,11 @@
           </div>
 
           <div class="c-col list">
-            <div class="title">Informasiýa</div>
+            <div class="title">Maglumat</div>
 
             <ul>
               <li>
                 <NuxtLink to="/about">Biz barada</NuxtLink>
-              </li>
-              <li>
-                <NuxtLink to="/contact">Habarlaşmak</NuxtLink>
               </li>
               <li>
                 <NuxtLink to="/help-order"
@@ -55,11 +80,15 @@
                   >Töleg tertibi we eltip bermek</NuxtLink
                 >
               </li>
+
             </ul>
           </div>
 
-          <div class="c-col newsletter">
-            <div>
+          <div class="c-col list d-flex" style="align-items: center; text-decoration: underline;">
+
+                <NuxtLink class="title" to="/contact">Habarlaşmak</NuxtLink>
+
+            <!-- <div>
               Habar býulletenimize ýazylyň we ilkinji satyn alanyňyzdan 10%
               arzanladyň
             </div>
@@ -67,23 +96,23 @@
             <form action="#" class="wrapper">
               <input type="text" name="email" placeholder="E-mail adresiňiz" />
               <button>Ugradyň</button>
-            </form>
+            </form> -->
           </div>
         </div>
       </div>
     </footer>
     <div class="copyright">
       <div class="container">
-        Copyright © {{ new Date().getFullYear() }} All rights reserved. Powered by
+        &copy; {{ new Date().getFullYear() }} Ähli hukuklar goragly.
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { BIconTelephone, BIconEnvelope } from "bootstrap-vue";
+import { BIconTelephone, BIconEnvelope, BIconPrinter } from "bootstrap-vue";
 export default {
-  components: { BIconTelephone, BIconEnvelope },
+  components: { BIconTelephone, BIconEnvelope, BIconPrinter },
 };
 </script>
 

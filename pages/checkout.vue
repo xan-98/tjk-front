@@ -8,17 +8,17 @@
             <div class="title">
               <div class="row">
                 <div class="col">
-                  <h4><b>Checkout</b></h4>
+                  <h4><b>Sargydy tassyklamak</b></h4>
                 </div>
                 <div class="col align-self-center text-right text-muted">
-                  {{ $store.state.cart.length }} items
+                  {{ $store.state.cart.length }} harytlar
                 </div>
               </div>
             </div>
 
             <div class="c-form">
               <div class="c-row">
-                <label for="name">Adynyň <span>*</span></label>
+                <label for="name">Adyňyz <span>*</span></label>
                 <input v-model="userInfo.name" type="text" required />
 
                 <label for="phone">Telefon <span>*</span></label>
@@ -39,24 +39,24 @@
             <div class="back-to-shop">
               <NuxtLink to="/cart">
                 &leftarrow;
-                <span class="text-muted">Back</span>
+                <span class="text-muted">Yza gaýtmak</span>
               </NuxtLink>
             </div>
           </div>
           <div class="col-md-4 summary">
             <div>
-              <h5><b>Summary</b></h5>
+              <h5><b>Jemi</b></h5>
             </div>
             <hr />
             <div class="row">
               <div class="col" style="padding-left: 0">
-                Items {{ $store.state.cart.length }}
+                Harytlar {{ $store.state.cart.length }}
               </div>
               <div class="col text-right">{{ getSum() }} TMT</div>
             </div>
 
             <div class="row">
-              <div class="col" style="padding-left: 0">Shipping</div>
+              <div class="col" style="padding-left: 0">Eltip berme</div>
               <div class="col text-right">
                 {{ $store.state.shipping == "welayat" ? 50 : 15 }} TMT
               </div>
@@ -113,7 +113,12 @@ export default {
     };
   },
 
+
+
   mounted() {
+    if(!this.$store.state.cart.length)
+        this.$router.push("/");
+        
     if (this.$auth.loggedIn) {
       this.userInfo.name = this.$auth.user.first_name;
       this.userInfo.phone = this.$auth.user.account.phone;

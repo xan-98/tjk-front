@@ -9,21 +9,17 @@
           <li>
             <NuxtLink to="/news"> Täzelikler </NuxtLink>
           </li>
-          <li>{{
-            data["title_" + $store.state.currentLang]
-              ? data["title_" + $store.state.currentLang]
-              : data.title
-          }}</li>
+          <li>
+            {{
+              data["title_" + $store.state.currentLang]
+                ? data["title_" + $store.state.currentLang]
+                : data.title
+            }}
+          </li>
         </ul>
       </div>
 
       <div class="wrapper">
-        <img class="news-img" :src="data.image" alt="" />
-
-        <div class="date">
-          <BIconCalendar3 />
-          {{ data.created_at }}
-        </div>
         <h4 class="title">
           {{
             data["title_" + $store.state.currentLang]
@@ -32,6 +28,20 @@
           }}
         </h4>
 
+        <div class="panel">
+          <div class="date">
+            <BIconCalendar3 />
+            {{ data.created_at }}
+          </div>
+
+          <div class="date">
+            <BIconEye />
+            {{ data.view }}
+          </div>
+        </div>
+        <br />
+        <img class="news-img" :src="data.image" alt="" />
+        
         <div class="description">
           {{
             data["description_" + $store.state.currentLang]
@@ -45,10 +55,10 @@
 </template>
 
 <script>
-import { BIconCalendar3 } from "bootstrap-vue";
+import { BIconCalendar3, BIconEye } from "bootstrap-vue";
 export default {
   components: {
-    BIconCalendar3,
+    BIconCalendar3,BIconEye
   },
   data() {
     return {

@@ -6,13 +6,13 @@
           <b-tab title="Meniň profilim" active>
             <div class="container">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <div class="p-image">
                     <img src="~/assets/img/profile-d.png" alt="" />
                   </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="offset-md-1 col-md-6">
                   <form @submit="onSubmitForm" class="form">
                     <div class="c-col">
                       <label for="name">Ady</label>
@@ -73,9 +73,9 @@
                           <div class="col">
                             <div class="row"><b>Id</b></div>
                           </div>
-                          <div class="col"><b>Status</b></div>
+                          <div class="col"><b>Ýagdaýy</b></div>
       
-                          <div class="col"><b>Shipping</b></div>
+                          <div class="col"><b>Eltip berme</b></div>
                           <div class="col"><b>Jemi</b></div>
                           <div class="col"><b>Wagty</b></div>
                         </div>

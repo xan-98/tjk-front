@@ -71,7 +71,7 @@ export default {
       }
 
       else
-      this.toast('Please Login')
+      this.toast('Birinji ulgami giriň')
     },
 
     isFavoriteFunction() {

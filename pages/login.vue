@@ -8,7 +8,7 @@
             <div class="login-wrap p-4 p-md-5">
               <div class="d-flex">
                 <div class="w-100">
-                  <h3 class="mb-4">Sign In</h3>
+                  <h3 class="mb-4">Giriş</h3>
                 </div>
               </div>
               <form @submit="onSubmitForm" :v-model="valid" class="signin-form">
@@ -22,7 +22,7 @@
                   />
                 </div>
                 <div class="form-group mb-3">
-                  <label class="label" for="password">Password</label>
+                  <label class="label" for="password">Açar sözi</label>
                   <input
                     v-model="userInfo.password"
                     type="password"
@@ -36,7 +36,7 @@
                     type="submit"
                     class="form-control btn btn-primary rounded submit px-3"
                   >
-                    Sign In
+                    Giriş
                   </button>
                 </div>
                 <div class="form-group d-md-flex">
@@ -51,20 +51,19 @@
                         value="accepted"
                       />
                       <label for="remember" class="custom-control-label">
-                        Remember
+                        Ýatda sakla
                       </label>
                     </div>
                   </div>
                   <div class="w-50 text-md-right">
-                    <a href="#">Forgot Password</a>
+                    <a href="#">Açar sözi unutdym</a>
                   </div>
                 </div>
               </form>
               <p class="text-center">
-                Not a member?
-                <NuxtLink to="/register" class="singup" href="#signup"
-                  >Sign Up</NuxtLink
-                >
+                Agza dälmi?
+                <NuxtLink to="/register" class="singup" >
+                  Ýazylmak</NuxtLink>
               </p>
             </div>
           </div>
@@ -83,7 +82,7 @@ export default {
         email: "",
         username: "",
         password: "",
-        remember: true,
+        remember: false,
       },
     };
   },
@@ -103,13 +102,37 @@ export default {
         // // let test = await this.$auth.fetchUser()
         // // this.$axios.get('/user' );
 
+        if (this.userInfo.remember) {
+          this.$cookies.set("auth_expire", 60 * 60 * 24 * 60, {
+            path: "/",
+            maxAge: 60 * 60 * 24 * 60,
+          });
+        } else {
+          this.$cookies.set("auth_expire", -1, {
+            path: "/",
+            maxAge: -1,
+          });
+        }
+
         const favs = await this.$axios.get("/getfavorite");
         this.$store.commit("setFavorites", favs.data.results);
 
         // this.$auth.user
       } catch (err) {
+        this.toast('Email ýa-da parol ýalňyş')
         console.log(err);
       }
+    },
+
+    toast(message, append = false) {
+      this.counter++;
+      this.$bvToast.toast(`${message}`, {
+        title: `Ýalnyşlyk`,
+        toaster: "b-toaster-top-center",
+        solid: true,
+        appendToast: append,
+        variant: "danger",
+      });
     },
   },
 };

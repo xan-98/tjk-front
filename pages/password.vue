@@ -18,13 +18,13 @@
 
                                         <div class="c-col">
 
-                                            <label for="password">Password</label>
+                                            <label for="password">Açar sözi</label>
                                             <input v-model="userInfo.password" minlength="5" type="password" required>
                                         </div>
 
                                         <div class="c-col">
 
-                                            <label for="password">Password confirm</label>
+                                            <label for="password">Açar sözi tassykla</label>
                                             <input v-model="userInfo.confirm_password" minlength="5" type="password" required>
                                         </div>
 
@@ -36,9 +36,9 @@
                             </div>
                         </div>
                     </b-tab>
-                    <b-tab title="Sargytlarym">
+                    <!-- <b-tab title="Sargytlarym">
                         <b-card-text>Tab contents 2</b-card-text>
-                    </b-tab>
+                    </b-tab> -->
                 </b-tabs>
             </b-card>
         </div>

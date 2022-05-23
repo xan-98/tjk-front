@@ -48,6 +48,7 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
+    'cookie-universal-nuxt',
   ],
   axios: {
     baseURL: 'http://localhost:8000/api/'
@@ -73,11 +74,13 @@ export default {
           },
           logout: false,
           tokenType: 'Bearer',
-        
+          
         }
       }
     },
-
+    
+    localStorage: false,
+    
     redirect: {
       home: '/',
       logout: '/',
