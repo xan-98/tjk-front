@@ -92,7 +92,7 @@ export default {
       valid: false,
       contactInfo: {
         email: "",
-        username: "",
+        name: "",
         message: "",
       },
     };

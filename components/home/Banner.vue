@@ -1,7 +1,9 @@
 <template>
     <div class="banner">
-        <div class="container">
-            <img :src="data.image" alt="">
+        <div class="container-fluid">
+            <img :src='data["image_" + $store.state.currentLang]
+                      ? data["image_" + $store.state.currentLang]
+                      : data.image'  alt="">
         </div>
     </div>
 </template>
@@ -24,7 +26,8 @@ export default {
 
 <style lang="scss">
     .banner{
-        margin: 100px 0;
+        padding: 100px 0;
+        background: #ffffff;
         img{
             width: 100%;
             border-radius: 6px;

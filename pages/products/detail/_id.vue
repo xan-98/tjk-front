@@ -207,7 +207,7 @@ export default {
             }
             
         }else{
-            this.toast('Razmeri saýlaň')
+            this.toast('Ölçeg saýlaň')
         }
     },  
 

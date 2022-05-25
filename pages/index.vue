@@ -2,7 +2,6 @@
   <div>
     <div class="index">
       <Slider />
-      <Privilege />
 
       <NewProducts />
       

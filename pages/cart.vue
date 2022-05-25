@@ -59,7 +59,7 @@
                   <span
                     @click="$store.commit('deleteCart', product)"
                     class="close"
-                    >&#10005;</span
+                    >x</span
                   >
                 </div>
               </div>
@@ -158,6 +158,8 @@ export default {
 
   .close {
     cursor: pointer;
+    font-size: 22px;
+    color: #000000;
   }
 }
 </style>
