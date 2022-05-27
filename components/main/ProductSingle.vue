@@ -71,7 +71,7 @@ export default {
       }
 
       else
-      this.toast('Birinji ulgami giriň')
+      this.toast(this.$tr.t('Birinji ulgami giriň'))
     },
 
     isFavoriteFunction() {

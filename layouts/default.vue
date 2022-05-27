@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import remember from '@/mixins/remember'
+
 export default {
   // mixins: [remember],
   data() {

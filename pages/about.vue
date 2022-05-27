@@ -6,16 +6,16 @@
                     <ul>
                         <li>
                             <n-link to="/">
-                                Baş sahypa
+                                {{ $tr.t('Baş sahypa')}}
                             </n-link>
                         </li>
                         <li>
-                            Biz barada
+                            {{ $tr.t('Biz barada')}}
                         </li>
                     </ul>
                 </div>
 
-                <h3>Biz barada</h3>
+                <h3>{{ $tr.t('Biz barada')}}</h3>
             </div>
         </div>
         
@@ -34,20 +34,20 @@
                         </div>
                     </div>
 
-                    <div class="bg-color"></div>
                 </div>
             </div>
         </div>
 
-        <div class="map-show">
+        <!-- <div class="map-show">
             <div class="container">
-                <img src="~/assets/img/locs.png" alt="locations">
+                <img src="" alt="locations">
                 <div class="text">
                     <h3>Dükanlaryň salgylary</h3>
                     <a href="#">Kartada görmek</a>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <br><br>
 
     </div>
 </template>

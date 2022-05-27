@@ -1,7 +1,7 @@
 <template>
   <div class="best-seller">
     <div class="container">
-      <h3>Köp satylanlar</h3>
+      <h3>{{ $tr.t('Köp satylanlar') }}</h3>
 
       <div class="row">
         <div

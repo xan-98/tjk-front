@@ -7,10 +7,10 @@
             <div class="title">
               <div class="row">
                 <div class="col">
-                  <h4><b>Söwda sebedi</b></h4>
+                  <h4><b>{{ $tr.t('Söwda sebedi')}}</b></h4>
                 </div>
                 <div class="col align-self-center text-right text-muted">
-                  {{ $store.state.cart.length }} harytlar
+                  {{ $store.state.cart.length }} {{ $tr.t('harytlar')}}
                 </div>
               </div>
             </div>
@@ -18,12 +18,12 @@
               <div class="row main align-items-center">
                 <div class="col-2"></div>
                 <div class="col">
-                  <div class="row"><b>Ady</b></div>
+                  <div class="row"><b>{{ $tr.t('Ady')}}</b></div>
                 </div>
                 <div class="col-2"></div>
-                <div class="col-2">Bahasy</div>
+                <div class="col-2">{{ $tr.t('Bahasy')}}</div>
 
-                <div class="col-2">jemi</div>
+                <div class="col-2">{{ $tr.t('Jemi')}}</div>
               </div>
             </div>
             <div
@@ -67,29 +67,29 @@
             <div class="back-to-shop">
               <NuxtLink to="/new-products">
                 &leftarrow;
-                <span class="text-muted">Söwda dowam ediň</span>
+                <span class="text-muted">{{ $tr.t('Söwda dowam ediň')}}</span>
                 </NuxtLink>
             </div>
           </div>
           <div class="col-md-4 summary">
             <div>
-              <h5><b>Jemi</b></h5>
+              <h5><b>{{ $tr.t('Jemi')}}</b></h5>
             </div>
             <hr />
             <div class="row">
               <div class="col" style="padding-left: 0">
-                Harytlar {{ $store.state.cart.length }}
+                {{ $tr.t('Harytlar')}} {{ $store.state.cart.length }}
               </div>
               <div class="col text-right">TMT {{ getSum() }}</div>
             </div>
             <form>
-              <p>Eltip berme</p>
+              <p>{{ $tr.t('Eltip berme')}}</p>
               <select v-model="shipping" @change="shippingChange()">
                 <option class="text-muted" value="asgabat">
-                  Aşgabat - 15 TMT
+                  {{ $tr.t('Aşgabat')}} - 15 TMT
                 </option>
                 <option class="text-muted" value="welayat">
-                  Beýleki welaýatlar - 50 TMT
+                  {{ $tr.t('Beýleki welaýatlar')}} - 50 TMT
                 </option>
               </select>
             </form>
@@ -97,10 +97,10 @@
               class="row"
               style="border-top: 1px solid rgba(0, 0, 0, 0.1); padding: 2vh 0"
             >
-              <div class="col">JEMI BAHASY</div>
+              <div class="col">{{ $tr.t('JEMI BAHASY')}}</div>
               <div class="col text-right">{{ getTotal() }} TMT</div>
             </div>
-            <NuxtLink to="/checkout" class="btn" v-if="$store.state.cart.length">Sargydy tassykla</NuxtLink>
+            <NuxtLink to="/checkout" class="btn" v-if="$store.state.cart.length">{{ $tr.t('Sargydy tassykla')}}</NuxtLink>
           </div>
         </div>
       </div>

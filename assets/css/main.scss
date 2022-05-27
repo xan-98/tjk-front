@@ -1,6 +1,7 @@
 $s-black : #2C2C2C;
 $s-blue: #175F8F;
 $s-red: #EE7B7B;
+$d-bg: #F5FCFF;
 
 
 * {
@@ -558,7 +559,7 @@ ul {
 
 footer {
     background: #F6F6F8;
-    padding: 24px 0;
+    padding-top: 24px;
 
     font-size: 14px;
 
@@ -593,6 +594,7 @@ footer {
 
     .address{
         margin-bottom: 10px;
+        max-width: 270px;
     }
 
     .contacts {
@@ -707,6 +709,7 @@ footer {
     font-size: 14px;
     line-height: 18px;
     color: #929292;
+    background: #0D0D0D;
 }
 
 
@@ -790,7 +793,7 @@ footer {
     .slider {
 
         img{
-            height: 500px;
+            height: 650px;
         }
         .title {
             font-size: 60px !important;
@@ -878,7 +881,8 @@ footer {
 }
 
 .index {
-    background: #F5FCFF;
+    background: #ffffff;
+    // background: #F5FCFF;
 }
 
 .reklam {
@@ -1071,7 +1075,8 @@ footer {
 
 
 .new-products {
-    padding-top: 110px;
+    margin-top: 110px;
+    background: $d-bg;
 
     .product-single {
         margin-bottom: 30px;
@@ -1207,7 +1212,7 @@ footer {
 }
 
 .best-seller {
-
+    background: $d-bg;
     h3 {
         font-weight: 500;
         font-size: 36px;
@@ -2079,5 +2084,26 @@ footer {
                 color: #EE7B7B;
             }
         }
+    }
+}
+
+.pagination {
+    .page-link{
+        color: $s-black;
+        border: none;
+        background: transparent;
+    }
+
+    .page-item.active{
+        .page-link{
+            color: #EE7B7B;
+            background: transparent;
+        }
+    }
+}
+
+.agile__dots{
+    button{
+        border: 1px solid!important;
     }
 }

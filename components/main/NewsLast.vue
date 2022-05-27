@@ -3,8 +3,8 @@
     <div class="container">
 
       <div class="title">
-        <h3>Soňky täzelikler</h3>
-        <a href="/news" class="link">Hemmesini görkez</a>
+        <h3>{{ $tr.t('Soňky täzelikler')}}</h3>
+        <a href="/news" class="link">{{ $tr.t('Hemmesini görkez')}}</a>
       </div>
 
       <div class="row">

@@ -4,7 +4,7 @@
       <div class="breadcrumbs">
         <ul>
           <li>
-            <NuxtLink to="/"> Baş sahypa </NuxtLink>
+            <NuxtLink to="/"> {{ $tr.t('Baş sahypa')}} </NuxtLink>
           </li>
           <li>
             {{
@@ -16,7 +16,7 @@
         </ul>
       </div>
 
-      <div class="row">
+      <div v-if="!isLoading" class="row">
         <div
           v-for="(item, index) in data"
           :key="index"
@@ -25,6 +25,18 @@
           <ProductSingle :product="item" />
         </div>
       </div>
+
+      <Loading v-else :height="300" />
+
+      <b-pagination
+        v-if="rows > perPage"
+        class="justify-content-center"
+        v-model="currentPage"
+        :total-rows="rows"
+        :per-page="perPage"
+        @change="changePagination"
+        size="lg"
+      ></b-pagination>
     </div>
   </div>
 </template>
@@ -33,16 +45,29 @@
 export default {
   data() {
     return {
+      isLoading: true,
       data: [],
-      category:this.$store.getters.getCatById(this.$route.params.id)
+      category: this.$store.getters.getCatById(this.$route.params.id),
+      currentPage: 1,
+      rows:0,
+      perPage: 9
     };
   },
-
   async fetch() {
     const res = await this.$axios.get(
-      "/products/products/?category=" + this.$route.params.id
+      `/products/products/?category=${this.$route.params.id}&limit=${this.perPage}`
     );
     this.data = res.data.results;
+    this.isLoading = false;
+    this.rows = res.data.count;
+  },
+  methods: {
+    async changePagination(v) {
+      this.isLoading = true
+      const res = await this.$axios.get(`/products/products/?category=${this.$route.params.id}&limit=${this.perPage}&offset=${this.perPage * (v-1)}`);
+      this.data = res.data.results;
+      this.isLoading = false;
+    },
   },
 };
 </script>

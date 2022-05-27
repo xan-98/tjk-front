@@ -2,8 +2,8 @@
   <div class="new-products">
     <div class="container">
       <div class="title">
-        <h3>Täze gelen harytlar</h3>
-        <NuxtLink to="/new-products" class="link">Hemmesini görkez</NuxtLink>
+        <h3>{{ $tr.t('Täze gelen harytlar') }}</h3>
+        <NuxtLink to="/new-products" class="link">{{ $tr.t('Hemmesini görkez') }}</NuxtLink>
       </div>
 
       <div class="row">

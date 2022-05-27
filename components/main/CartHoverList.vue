@@ -25,7 +25,7 @@
     </div>
 
     <div v-if="$store.state.cart.length > 3" class="all">
-      <NuxtLink to="/cart"> All </NuxtLink>
+      <NuxtLink to="/cart"> {{ $tr.t('Hemmesi') }} </NuxtLink>
     </div>
   </div>
 </template>

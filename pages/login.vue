@@ -62,8 +62,7 @@
               </form>
               <p class="text-center">
                 Agza dälmi?
-                <NuxtLink to="/register" class="singup" >
-                  Ýazylmak</NuxtLink>
+                <NuxtLink to="/register" class="singup"> Ýazylmak</NuxtLink>
               </p>
             </div>
           </div>
@@ -119,8 +118,20 @@ export default {
 
         // this.$auth.user
       } catch (err) {
-        this.toast('Email ýa-da parol ýalňyş')
-        console.log(err);
+        this.$axios
+          .get("/check-user?email=" + this.userInfo.username)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.user == "no") {
+              this.toast("Beýle ulanyjy ýok, agza bolmagyňyzy haýyş edýaris");
+            }else{
+            this.toast("Açar sözi ýalňyş");
+
+            }
+          })
+          .catch((err) => {
+            this.toast("Açar sözi ýalňyş");
+          });
       }
     },
 

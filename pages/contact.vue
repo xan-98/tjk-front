@@ -5,13 +5,13 @@
         <div class="breadcrumbs">
           <ul>
             <li>
-              <n-link to="/"> Baş sahypa </n-link>
+              <n-link to="/"> {{ $tr.t('Baş sahypa')}} </n-link>
             </li>
-            <li>Habarlaşmak</li>
+            <li>{{ $tr.t('Habarlaşmak')}}</li>
           </ul>
         </div>
 
-        <h3>Habarlaşmak</h3>
+        <h3>{{ $tr.t('Habarlaşmak')}}</h3>
       </div>
     </div>
 
@@ -23,7 +23,7 @@
           </div>
 
           <div class="right-col">
-            <h3>Tikinçilik fabrigi</h3>
+            <h3>{{ $tr.t('Tikinçilik fabrigi')}}</h3>
 
             <div class="description">
               Toplumda innowasion tehnologiýalary hem ulanylýar. Muňa mysal edip
@@ -35,7 +35,7 @@
             <form @submit="onSubmitForm" class="form">
               <div class="c-row">
                 <div class="c-col">
-                  <label for="name">Adyňyz</label>
+                  <label for="name">{{ $tr.t('Adyňyz')}}</label>
                   <input
                     v-model="contactInfo.name"
                     type="text"
@@ -45,7 +45,7 @@
                   />
                 </div>
                 <div class="c-col">
-                  <label for="email">E-mail</label>
+                  <label for="email">{{ $tr.t('Email')}}</label>
                   <input
                     v-model="contactInfo.email"
                     type="email"
@@ -56,7 +56,7 @@
                 </div>
               </div>
 
-              <label for="message">Hatynyz</label>
+              <label for="message">{{ $tr.t('Hatynyz')}}</label>
               <textarea
                 name="message"
                 id="message"
@@ -66,22 +66,22 @@
                 required
               ></textarea>
 
-              <button type="submit" class="send">ugrat</button>
+              <button type="submit" class="send">{{ $tr.t('ugrat')}}</button>
             </form>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="map-show">
+    <!-- <div class="map-show">
       <div class="container">
-        <img src="~/assets/img/locs.png" alt="locations" />
+        <img src="" alt="locations" />
         <div class="text">
           <h3>Dükanlaryň salgylary</h3>
           <a href="#">Kartada görmek</a>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -114,12 +114,11 @@ export default {
       this.$axios
         .post("/createcontact", this.contactInfo)
         .then((res) => {
-          this.toast("Iberildi");
+          this.toast(this.$tr.t("Iberildi"));
           this.$router.push("/");
         })
         .catch((err) => {
-          if (err.response.data.username) this.toast("Email öň bar");
-          else this.toast("Ýalňyşlyk bar täzeden barlaň");
+          this.toast(this.$tr.t("Ýalňyşlyk bar täzeden barlaň"));
         });
     },
   },

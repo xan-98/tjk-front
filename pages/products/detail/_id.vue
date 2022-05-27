@@ -4,7 +4,7 @@
       <div class="breadcrumbs">
         <ul>
           <li>
-            <n-link to="/"> Baş sahypa </n-link>
+            <n-link to="/"> {{ $tr.t('Baş sahypa')}} </n-link>
           </li>
           <li>
             <NuxtLink
@@ -69,7 +69,8 @@
         </div>
 
         <div class="right-col">
-          <div class="status">täze</div>
+          <!-- <div class="status">{{ $tr.t('täze') }}</div> -->
+          <br>
           <div class="name">
             {{
               pr["title_" + $store.state.currentLang]
@@ -87,7 +88,7 @@
           </div>
 
           <div class="sizes">
-            <div class="text">Ölçegleri:</div>
+            <div class="text">{{ $tr.t('Ölçegleri')}}:</div>
 
             <ul>
               <li
@@ -108,7 +109,7 @@
           <div class="action-bar">
             <button class="add-to-cart" @click="addToCart()" >
               <BIconCart />
-              sebede goş
+              {{ $tr.t('sebede goş')}}
             </button>
 
             <button @click="addFavorite()" class="add-to-fav" :class="{active: isFav}">
@@ -139,7 +140,7 @@
       </div> -->
 
       <div class="pr-other" v-if="products.length > 1">
-        <h3>Baglanyşykly önümler</h3>
+        <h3>{{ $tr.t('Baglanyşykly önümler')}}</h3>
         <div class="row">
           <div
             v-for="(item, index) in products"
@@ -198,16 +199,16 @@ export default {
             let size_i = this.pr.sizes.findIndex(x => x.title == this.pr.activeSize);
             
             if (this.pr.sizes[size_i].value <  this.pr.amount ){
-              this.toast(`Bu ölçegden diňe ${this.pr.sizes[size_i].value} sany galdy`)
+              this.toast(`${ this.$tr.t('Bu ölçegden galan syny') }: ${this.pr.sizes[size_i].value}`)
             }else{
               this.pr.sizes[size_i].value -= this.pr.amount
               console.log(this.pr);
               this.$store.commit("addCart", { ...this.pr } );
-              this.toast('Sebede goşuldy')
+              this.toast(this.$tr.t('Sebede goşuldy'))
             }
             
         }else{
-            this.toast('Ölçeg saýlaň')
+            this.toast(this.$tr.t('Ölçeg saýlaň'))
         }
     },  
 
@@ -239,7 +240,7 @@ export default {
       }
 
       else
-      this.toast('Birinji ulgama giriň')
+      this.toast(this.$tr.t('Birinji ulgama giriň'))
     },
 
     isFavoriteFunction() {

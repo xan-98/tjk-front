@@ -7,8 +7,8 @@
             <NuxtLink to="/" class="logo">
               <img src="/logo.png" alt="Logo" />
               <h1>
-                Türkmenbaşy
-                <div>jins toplumy</div>
+                {{ $tr.t('Türkmenbaşy') }}
+                <div>{{ $tr.t("jins toplumy")}}</div>
               </h1>
             </NuxtLink>
             <div class="address">
@@ -49,7 +49,7 @@
           </div>
 
           <div class="c-col list">
-            <div class="title">Kategoriýalar</div>
+            <div class="title">{{ $tr.t('Kategoriýalar')}}</div>
 
             <ul>
               <li v-for="(cat, index) in $store.state.category" :key="index">
@@ -63,41 +63,41 @@
           </div>
 
           <div class="c-col list">
-            <div class="title">Maglumat</div>
+            <div class="title">{{ $tr.t('Maglumat')}}</div>
 
             <ul>
               <li>
-                <NuxtLink to="/about">Biz barada</NuxtLink>
+                <NuxtLink to="/about">{{ $tr.t('Biz barada') }}</NuxtLink>
               </li>
               <li>
                 <NuxtLink to="/help-order"
-                  >Saýtymyzdan nädip sargamaly</NuxtLink
+                  >{{ $tr.t('Saýtymyzdan nädip sargamaly')}}</NuxtLink
                 >
               </li>
               <li>
                 <NuxtLink to="/help-payment"
-                  >Töleg tertibi we eltip bermek</NuxtLink
+                  >{{ $tr.t('Töleg tertibi we eltip bermek')}}</NuxtLink
                 >
               </li>
             </ul>
           </div>
 
           <div class="c-col list">
-            <NuxtLink class="title" to="/contact">Habarlaşmak</NuxtLink>
+            <NuxtLink class="title" to="/contact">{{ $tr.t('Habarlaşmak')}}</NuxtLink>
 
             <form @submit="onSubmitForm">
               <div>
-                <label for="name">Adyňyz</label>
+                <label for="name">{{ $tr.t('Adyňyz')}}</label>
                 <input v-model="contactInfo.name" type="text" required />
               </div>
               <div>
-                <label for="email">Email</label>
+                <label for="email">{{ $tr.t('Email')}}</label>
                 <input v-model="contactInfo.email" type="email" required />
               </div>
 
-              <label for="note">Bellik</label>
-              <textarea v-model="contactInfo.message"  rows="3"></textarea>
-              <button type="submit">Ugrat</button>
+              <label for="note">{{ $tr.t('Bellik')}}</label>
+              <textarea v-model="contactInfo.message"  rows="3" required></textarea>
+              <button type="submit">{{ $tr.t('Ugrat')}}</button>
             </form>
 
             <!-- <div>
@@ -115,7 +115,7 @@
     </footer>
     <div class="copyright">
       <div class="container">
-        &copy; {{ new Date().getFullYear() }} <b>Ähli hukuklar goragly.</b>
+        &copy; {{ new Date().getFullYear() }} <b>{{ $tr.t('Ähli hukuklar goragly')}}.</b>
       </div>
     </div>
   </div>
@@ -153,7 +153,7 @@ export default {
       this.$axios
         .post("/createcontact", this.contactInfo)
         .then((res) => {
-          this.toast("Iberildi");
+          this.toast(this.$tr.t("Iberildi"));
 
           this.contactInfo = {
             email: "",
@@ -162,8 +162,8 @@ export default {
           };
         })
         .catch((err) => {
-          if (err.response.data.username) this.toast("Email öň bar");
-          else this.toast("Ýalňyşlyk bar täzeden barlaň");
+          this.toast(this.$tr.t("Ýalňyşlyk bar täzeden barlaň"));
+          console.log(err);
         });
     },
   },

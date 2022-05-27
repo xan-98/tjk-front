@@ -3,8 +3,9 @@
     <client-only>
       <agile
         :navButtons="false"
-        :autoplay="false"
+        :autoplay="true"
         :infinite="true"
+        :autoplaySpeed="5000"
         ref="carusel"
       >
         <div class="slide" v-for="(slide, index) in data" :key="index">

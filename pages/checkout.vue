@@ -8,26 +8,26 @@
             <div class="title">
               <div class="row">
                 <div class="col">
-                  <h4><b>Sargydy tassyklamak</b></h4>
+                  <h4><b>{{ $tr.t('Sargydy tassyklamak')}}</b></h4>
                 </div>
                 <div class="col align-self-center text-right text-muted">
-                  {{ $store.state.cart.length }} harytlar
+                  {{ $store.state.cart.length }} {{ $tr.t('harytlar')}}
                 </div>
               </div>
             </div>
 
             <div class="c-form">
               <div class="c-row">
-                <label for="name">Adyňyz <span>*</span></label>
+                <label for="name">{{ $tr.t('Adyňyz')}} <span>*</span></label>
                 <input v-model="userInfo.name" type="text" required />
 
-                <label for="phone">Telefon <span>*</span></label>
+                <label for="phone">{{ $tr.t('Telefon')}} <span>*</span></label>
                 <input v-model="userInfo.phone" type="text" required />
 
-                <label for="email">Email</label>
+                <label for="email">{{ $tr.t('Email')}}</label>
                 <input v-model="userInfo.email" type="email" />
 
-                <label for="address">Salgy <span>*</span></label>
+                <label for="address">{{ $tr.t('Salgy')}} <span>*</span></label>
                 <textarea
                   v-model="userInfo.address"
                   required
@@ -39,13 +39,13 @@
             <div class="back-to-shop">
               <NuxtLink to="/cart">
                 &leftarrow;
-                <span class="text-muted">Yza gaýtmak</span>
+                <span class="text-muted">{{ $tr.t('Yza gaýtmak')}}</span>
               </NuxtLink>
             </div>
           </div>
           <div class="col-md-4 summary">
             <div>
-              <h5><b>Jemi</b></h5>
+              <h5><b>{{ $tr.t('Jemi')}}</b></h5>
             </div>
             <hr />
             <div class="row">
@@ -56,29 +56,29 @@
             </div>
 
             <div class="row">
-              <div class="col" style="padding-left: 0">Eltip berme</div>
+              <div class="col" style="padding-left: 0">{{ $tr.t('Eltip berme')}}</div>
               <div class="col text-right">
                 {{ $store.state.shipping == "welayat" ? 50 : 15 }} TMT
               </div>
             </div>
             <br />
-            <p>Töleg görnüşi</p>
+            <p>{{ $tr.t('Töleg görnüşi')}}</p>
             <select v-model="payment">
               <option class="text-muted" value="nagt">
-                Eltip berensoň nagt
+                {{ $tr.t('Eltip berensoň nagt')}}
               </option>
               <option class="text-muted" value="baranda-cart">
-                Eltip berensoň kartdan tölemek
+                {{ $tr.t('Eltip berensoň kartdan tölemek')}}
               </option>
 
-              <option class="text-muted" value="cart">Online tölemek</option>
+              <option class="text-muted" value="cart">{{ $tr.t('Online tölemek')}}</option>
             </select>
 
             <div
               class="row"
               style="border-top: 1px solid rgba(0, 0, 0, 0.1); padding: 2vh 0"
             >
-              <div class="col">Jemi Töleg</div>
+              <div class="col">{{ $tr.t('Jemi Töleg')}}</div>
               <div class="col text-right">
                 {{ getTotal() }} TMT
               </div>
@@ -88,7 +88,7 @@
               type="submit"
               class="btn"
             >
-              Sargyt etmek
+              {{ $tr.t('Sargyt etmek')}}
             </button>
           </div>
         </div>
@@ -151,15 +151,14 @@ export default {
             console.log(res.data);
             window.open(res.data.url, '_self')
           }else{
-              this.toast('Ýalňyşlyk bar täzeden barlaň')
+              this.toast(this.$tr.t('Ýalňyşlyk bar täzeden barlaň'))
           }
 
       
         })
         .catch((err) => {
-          this.toast('Ýalňyşlyk bar täzeden barlaň')
-          if (err.response.data.username) console.log("Email öň bar");
-          else console.log(err);
+          this.toast(this.$tr.t('Ýalňyşlyk bar täzeden barlaň'))
+          console.log(err);
         });
     },
 
