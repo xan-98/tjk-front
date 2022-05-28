@@ -1,8 +1,8 @@
 <template>
   <div class="check">
     <div class="container text-center">
-      <h2>Ýalňyşlyk döredi täzeden barlaň</h2>
-      <NuxtLink to="/"> Baş sahypa </NuxtLink>
+      <h2>{{ $tr.t('Ýalňyşlyk döredi täzeden barlaň')}}</h2>
+      <NuxtLink to="/"> {{ $tr.t('Baş sahypa')}} </NuxtLink>
     </div>
   </div>
 </template>

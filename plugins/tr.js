@@ -13,11 +13,9 @@ const tr = {
         if(this.lang == 'tm')
             return word
         else{
-            try {
+            if(data[this.lang][word])
                 return data[this.lang][word]
-            } catch (error) {
-                return word
-            }
+            return word
         }
     },
 

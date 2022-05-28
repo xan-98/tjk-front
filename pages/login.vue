@@ -8,12 +8,12 @@
             <div class="login-wrap p-4 p-md-7">
               <div class="d-flex">
                 <div class="w-100">
-                  <h3 class="mb-4">Giriş</h3>
+                  <h3 class="mb-4">{{ $tr.t('Giriş')}}</h3>
                 </div>
               </div>
               <form @submit="onSubmitForm" :v-model="valid" class="signin-form">
                 <div class="form-group mb-3">
-                  <label class="label" for="email">Email</label>
+                  <label class="label" for="email">{{ $tr.t('Email')}}</label>
                   <input
                     v-model="userInfo.username"
                     type="email"
@@ -22,7 +22,7 @@
                   />
                 </div>
                 <div class="form-group mb-3">
-                  <label class="label" for="password">Açar sözi</label>
+                  <label class="label" for="password">{{  $tr.t('Açar sözi')}}</label>
                   <input
                     v-model="userInfo.password"
                     type="password"
@@ -36,7 +36,7 @@
                     type="submit"
                     class="form-control btn btn-primary rounded submit px-3"
                   >
-                    Giriş
+                    {{ $tr.t('Giriş')}}
                   </button>
                 </div>
                 <div class="form-group d-md-flex">
@@ -51,18 +51,18 @@
                         value="accepted"
                       />
                       <label for="remember" class="custom-control-label">
-                        Ýatda sakla
+                        {{ $tr.t('Ýatda sakla')}}
                       </label>
                     </div>
                   </div>
                   <div class="w-50 text-md-right">
-                    <NuxtLink to="/password-reset">Açar sözi unutdym</NuxtLink>
+                    <NuxtLink to="/password-reset">{{ $tr.t('Açar sözi unutdym')}}</NuxtLink>
                   </div>
                 </div>
               </form>
               <p class="text-center">
-                Agza dälmi?
-                <NuxtLink to="/register" class="singup"> Ýazylmak</NuxtLink>
+                {{ $tr.t('Agza dälmi')}}?
+                <NuxtLink to="/register" class="singup"> {{ $tr.t('Ýazylmak')}}</NuxtLink>
               </p>
             </div>
           </div>
@@ -123,14 +123,14 @@ export default {
           .then((res) => {
             console.log(res.data);
             if (res.data.user == "no") {
-              this.toast("Beýle ulanyjy ýok, agza bolmagyňyzy haýyş edýaris");
+              this.toast( this.$tr.t("Beýle ulanyjy ýok, agza bolmagyňyzy haýyş edýaris"));
             }else{
-            this.toast("Açar sözi ýalňyş");
+            this.toast( this.$tr.t("Açar sözi ýalňyş"));
 
             }
           })
           .catch((err) => {
-            this.toast("Açar sözi ýalňyş");
+            this.toast( this.$tr.t("Açar sözi ýalňyş"));
           });
       }
     },
@@ -138,7 +138,7 @@ export default {
     toast(message, append = false) {
       this.counter++;
       this.$bvToast.toast(`${message}`, {
-        title: `Ýalnyşlyk`,
+        title: this.$tr.t(`Ýalnyşlyk`),
         toaster: "b-toaster-top-center",
         solid: true,
         appendToast: append,
@@ -150,9 +150,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login .img {
-  background-image: url(~/assets/img/login-bg.jpg);
-}
+// .login .img {
+//   background-image: url(~/assets/img/login-bg.jpg);
+// }
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
   top: 0.4rem;

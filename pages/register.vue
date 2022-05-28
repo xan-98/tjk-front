@@ -6,40 +6,37 @@
           <div class="col-md-12 col-lg-10">
             <div class="d-flex">
               <div class="w-100">
-                <h3 class="mb-4">Ýazylmak</h3>
+                <h3 class="mb-4">{{ $tr.t('Ýazylmak')}}</h3>
               </div>
             </div>
             <div class="wrap d-md-flex">
               <div class="login-wrap p-4 p-md-5">
                 <div class="form-group mb-3">
-                  <label class="label" for="name">Ulanyjy ady</label>
+                  <label class="label" for="name">{{ $tr.t('Ulanyjy ady')}}</label>
                   <input
                     v-model="userInfo.first_name"
                     type="text"
                     class="form-control"
-                    placeholder="Username"
                     required
                   />
                 </div>
 
                 <div class="form-group mb-3">
-                  <label class="label" for="email">Email</label>
+                  <label class="label" for="email">{{ $tr.t('Email')}}</label>
                   <input
                     v-model="userInfo.email"
                     type="email"
                     class="form-control"
-                    placeholder="Email"
                     required
                   />
                 </div>
 
                 <div class="form-group mb-3">
-                  <label class="label" for="phone">Telefon</label>
+                  <label class="label" for="phone">{{ $tr.t('Telefon')}}</label>
                   <input
                     v-model="userInfo.phone"
                     type="text"
                     class="form-control"
-                    placeholder="Phone"
                     required
                   />
                 </div>
@@ -47,7 +44,7 @@
 
               <div class="login-wrap p-4 p-md-5">
                 <div class="form-group mb-3">
-                  <label class="label" for="address">Salgy</label>
+                  <label class="label" for="address">{{ $tr.t('Salgy')}}</label>
                   <input
                     v-model="userInfo.address"
                     type="text"
@@ -58,27 +55,25 @@
                 </div>
 
                 <div class="form-group mb-3">
-                  <label class="label" for="password">Açar sözi</label>
+                  <label class="label" for="password">{{ $tr.t('Açar sözi')}}</label>
                   <input
                     v-model="userInfo.password"
                     type="password"
                     minlength="5"
                     class="form-control"
-                    placeholder="Password"
                     required
                   />
                 </div>
 
                 <div class="form-group mb-3">
                   <label class="label" for="confirm_password"
-                    >Açar sözi Tassykla</label
+                    >{{ $tr.t('Açar sözi Tassykla')}}</label
                   >
                   <input
                     v-model="userInfo.confirm_password"
                     minlength="5"
                     type="password"
                     class="form-control"
-                    placeholder="Password Confirm"
                     required
                   />
                 </div>
@@ -87,7 +82,7 @@
                     type="submit"
                     class="form-control btn btn-primary rounded submit px-3"
                   >
-                    Ýazylmak
+                    {{ $tr.t('Ýazylmak')}}
                   </button>
                 </div>
                 <div class="form-group d-md-flex">
@@ -102,8 +97,8 @@
                   </div>
                 </div>
                 <p class="text-center">
-                  Öň agzamy?
-                  <NuxtLink to="/login" class="singup">Giriş</NuxtLink>
+                  {{ $tr.t('Öň agzamy?')}}
+                  <NuxtLink to="/login" class="singup">{{ $tr.t('Giriş')}}</NuxtLink>
                 </p>
               </div>
             </div>
@@ -137,7 +132,7 @@ export default {
     toast(message, append = false) {
       this.counter++;
       this.$bvToast.toast(`${message}`, {
-        title: `Formda ýalnyşlyk`,
+        title: this.$tr.t(`Formda ýalnyşlyk`),
         toaster: "b-toaster-top-center",
         solid: true,
         appendToast: append,
@@ -151,7 +146,7 @@ export default {
       this.userInfo.username = this.userInfo.email;
 
       if (this.userInfo.password !== this.userInfo.confirm_password) {
-        this.toast("Parollar gabat gelmedi!");
+        this.toast(this.$tr.t("Parollar gabat gelmedi!"));
         return false;
       }
       this.$auth.logout();
@@ -164,8 +159,8 @@ export default {
           }
         })
         .catch((err) => {
-          if (err.response.data.username) this.toast("Email öň bar");
-          else this.toast("Ýalňyşlyk bar täzeden barlaň");
+          if (err.response.data.username) this.toast(this.$tr.t("Email öň bar"));
+          else this.toast(this.$tr.t("Ýalňyşlyk bar täzeden barlaň"));
         });
 
       this.$cookies.set("auth_expire", 60 * 60 * 24 * 60, {
@@ -182,7 +177,7 @@ export default {
 
       this.$auth.fetchUser();
 
-      console.log(this.$auth.user);
+      // console.log(this.$auth.user);
     },
   },
 };

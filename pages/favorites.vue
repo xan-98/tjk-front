@@ -4,9 +4,9 @@
       <div class="breadcrumbs">
         <ul>
           <li>
-            <NuxtLink to="/"> Baş sahypa </NuxtLink>
+            <NuxtLink to="/"> {{ $tr.t('Baş sahypa')}} </NuxtLink>
           </li>
-          <li>Halananlar</li>
+          <li>{{ $tr.t('Halananlar')}}</li>
         </ul>
       </div>
 

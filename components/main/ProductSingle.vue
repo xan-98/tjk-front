@@ -19,6 +19,14 @@
         }}
       </div>
       <div class="price">{{ product.price }} TMT</div>
+
+      <div v-if="category" class="category-s">
+        {{
+          product.category["title_" + $store.state.currentLang]
+            ? product.category["title_" + $store.state.currentLang]
+            : product.category.title
+        }}
+      </div>
     </NuxtLink>
   </div>
 </template>
@@ -26,7 +34,7 @@
 <script>
 import { BIconHeart, BIconCart } from "bootstrap-vue";
 export default {
-  props: ["product"],
+  props: ["product",'category'],
 
   components: {
     BIconHeart,

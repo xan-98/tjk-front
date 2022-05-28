@@ -18,18 +18,18 @@
 
                                         <div class="c-col">
 
-                                            <label for="password">Açar sözi</label>
+                                            <label for="password">{{ $tr.t('Açar sözi')}}</label>
                                             <input v-model="userInfo.password" minlength="5" type="password" required>
                                         </div>
 
                                         <div class="c-col">
 
-                                            <label for="password">Açar sözi tassykla</label>
+                                            <label for="password">{{ $tr.t('Açar sözi tassykla')}}</label>
                                             <input v-model="userInfo.confirm_password" minlength="5" type="password" required>
                                         </div>
 
 
-                                        <button class="change" type="submit">Üýtget</button>
+                                        <button class="change" type="submit">{{ $tr.t('Üýtget')}}</button>
                                     </form>
 
                                 </div>
@@ -72,7 +72,7 @@ export default {
 
             if (this.userInfo.password !== this.userInfo.confirm_password) {
 
-                this.toast('Parollar gabat gelmedi!')
+                this.toast( this.$tr.t('Parollar gabat gelmedi!'))
                 return false
             }
 
@@ -80,15 +80,15 @@ export default {
                 .post('/password/update', this.userInfo)
                 .then(res => {
                     console.log(res);
-                    this.toast('Üstünlikli üýtgedildi')
+                    this.toast(this.$tr.t('Üstünlikli üýtgedildi'))
                     this.$auth.fetchUser()
                     this.$router.push('/profile')
                 })
                 .catch(err => {
                     if (err.response.data.username)
-                        this.toast('Email öň bar')
+                        this.toast(this.$tr.t('Email öň bar'))
                     else
-                        this.toast('Ýalňyşlyk bar täzeden barlaň')
+                        this.toast(this.$tr.t('Ýalňyşlyk bar täzeden barlaň'))
                 });
         },
     }

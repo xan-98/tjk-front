@@ -8,17 +8,16 @@
             <div class="login-wrap p-4 p-md-7">
               <div class="d-flex">
                 <div class="w-100">
-                  <h3 class="mb-4">Açar sözüni täzelemek</h3>
+                  <h3 class="mb-4">{{ $tr.t('Açar sözüni täzelemek')}}</h3>
                 </div>
               </div>
               <form @submit="onSubmitForm" :v-model="valid" class="signin-form">
                 <div class="form-group mb-3">
-                  <label class="label" for="email">Email</label>
+                  <label class="label" for="email">{{ $tr.t('Email')}}</label>
                   <input
                     v-model="userInfo.email"
                     type="email"
                     class="form-control"
-                    placeholder="email"
                   />
                 </div>
                 
@@ -27,7 +26,7 @@
                     type="submit"
                     class="form-control btn btn-primary rounded submit px-3"
                   >
-                    Täze açar sözüni iber
+                    {{ $tr.t('Täze açar sözüni iber')}}
                   </button>
                 </div>
                 <div class="form-group d-md-flex">
@@ -35,7 +34,7 @@
                 </div>
               </form>
               <p class="text-center">
-                 <NuxtLink to="/login">Yza</NuxtLink>
+                 <NuxtLink to="/login">{{ $tr.t('Yza')}}</NuxtLink>
               </p>
             </div>
           </div>
@@ -66,13 +65,13 @@ export default {
           if (res.data.status=='success') {
             
             this.$router.push('/login')
-            this.toast('Emailiňizi barlaň','Üstünlikli iberildi', 'success')
+            this.toast(this.$tr.t('Emailiňizi barlaň'),this.$tr.t('Üstünlikli iberildi'), 'success')
 
           }
         })
         .catch((err) => {
-          if (err.response.data.username) this.toast("Email öň bar");
-          else this.toast("Email tapylmady", 'Ýalňyşlyk bar');
+          this.toast( this.$tr.t("Email tapylmady"), this.$tr.t('Ýalňyşlyk bar'));
+          console.log(err);
         });
 
 
@@ -93,9 +92,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login .img {
-  background-image: url(~/assets/img/login-bg.jpg);
-}
+// .login .img {
+//   background-image: url(~/assets/img/login-bg.jpg);
+// }
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
   top: 0.4rem;

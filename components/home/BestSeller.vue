@@ -9,7 +9,7 @@
           :key="index"
           class="col-sm-12 col-md-4"
         >
-          <ProductSingle :product="item" />
+          <ProductSingle :product="item" :category="1" />
         </div>
       </div>
     </div>

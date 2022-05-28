@@ -4,9 +4,9 @@
       <div class="breadcrumbs">
         <ul>
           <li>
-            <NuxtLink to="/"> Baş sahypa </NuxtLink>
+            <NuxtLink to="/"> {{ $tr.t('Baş sahypa')}} </NuxtLink>
           </li>
-          <li>Gözleg</li>
+          <li>{{ $tr.t('Gözleg')}}</li>
           <li>
             {{ this.$route.query.search }}
           </li>
@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <h3 v-else class="text-center">Tapylmady: {{this.$route.query.search}}</h3>
+      <h3 v-else class="text-center">{{ $tr.t('Tapylmady')}}: {{this.$route.query.search}}</h3>
     </div>
   </div>
 </template>

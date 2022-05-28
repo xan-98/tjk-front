@@ -5,13 +5,13 @@
         <div class="breadcrumbs">
           <ul>
             <li>
-              <n-link to="/"> Baş sahypa </n-link>
+              <n-link to="/"> {{ $tr.t('Baş sahypa')}} </n-link>
             </li>
-            <li>Töleg tertibi we eltip bermek</li>
+            <li>{{ $tr.t('Töleg tertibi we eltip bermek')}}</li>
           </ul>
         </div>
 
-        <h3>Töleg tertibi we eltip bermek</h3>
+        <h3>{{ $tr.t('Töleg tertibi we eltip bermek')}}</h3>
       </div>
     </div>
 

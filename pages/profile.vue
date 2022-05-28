@@ -3,7 +3,7 @@
     <div class="container">
       <b-card no-body>
         <b-tabs pills card>
-          <b-tab title="Meniň profilim" active>
+          <b-tab :title="$tr.t('Meniň profilim')" active>
             <div class="container">
               <div class="row">
                 <!-- <div class="col-md-4">
@@ -15,7 +15,7 @@
                 <div class="offset-md-3 col-md-7">
                   <form @submit="onSubmitForm" class="form">
                     <div class="c-col">
-                      <label for="name">Ady</label>
+                      <label for="name">{{ $tr.t('Ady')}}</label>
                       <input
                         v-model="userInfo.first_name"
                         type="text"
@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="c-col">
-                      <label for="email">Email</label>
+                      <label for="email">{{ $tr.t('Email')}}</label>
                       <input
                         v-model="userInfo.email"
                         type="email"
@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="c-col">
-                      <label for="phone">Telefon</label>
+                      <label for="phone">{{ $tr.t('Telefon')}}</label>
                       <input
                         v-model="userInfo.phone"
                         type="text"
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="c-col">
-                      <label for="address">Salgy</label>
+                      <label for="address">{{ $tr.t('Salgy')}}</label>
                       <textarea
                         v-model="userInfo.address"
                         name="address"
@@ -52,18 +52,18 @@
                     </div>
 
                     <NuxtLink class="password-change" to="/password"
-                      >Paroly täzelemek</NuxtLink
+                      >{{ $tr.t('Paroly täzelemek')}}</NuxtLink
                     >
 
-                    <button class="change" type="submit">Üýtget</button>
+                    <button class="change" type="submit">{{ $tr.t('Üýtget')}}</button>
                   </form>
 
-                  <div @click="$auth.logout()" class="logout">Çykmak</div>
+                  <div @click="$auth.logout()" class="logout">{{ $tr.t('Çykmak')}}</div>
                 </div>
               </div>
             </div>
           </b-tab>
-          <b-tab title="Sargytlarym" >
+          <b-tab :title="$tr.t('Sargytlarym')" >
               <div class="cart-page" style="padding:0">
 
                   <div class="container ">
@@ -71,13 +71,13 @@
                       <div class="row border-bottom">
                         <div class="row main align-items-center">
                           <div class="col">
-                            <div class="row"><b>Id</b></div>
+                            <div class="row"><b>{{ $tr.t('Id')}}</b></div>
                           </div>
-                          <div class="col"><b>Ýagdaýy</b></div>
+                          <div class="col"><b>{{ $tr.t('Ýagdaýy')}}</b></div>
       
-                          <div class="col"><b>Eltip berme</b></div>
-                          <div class="col"><b>Jemi</b></div>
-                          <div class="col"><b>Wagty</b></div>
+                          <div class="col"><b>{{ $tr.t('Eltip berme')}}</b></div>
+                          <div class="col"><b>{{ $tr.t('Jemi')}}</b></div>
+                          <div class="col"><b>{{ $tr.t('Wagty')}}</b></div>
                         </div>
                       </div>
                       
@@ -140,7 +140,7 @@ export default {
       this.userInfo.username = this.userInfo.email;
 
       if (this.userInfo.password !== this.userInfo.confirm_password) {
-        this.toast("Parollar gabat gelmedi!");
+        this.toast(this.$tr.t("Parollar gabat gelmedi!"));
         return false;
       }
 
@@ -148,12 +148,12 @@ export default {
         .post("/update", this.userInfo)
         .then((res) => {
           console.log(res);
-          this.toast("Üstünlikli üýtgedildi");
+          this.toast(this.$tr.t("Üstünlikli üýtgedildi"));
           this.$auth.fetchUser();
         })
         .catch((err) => {
-          if (err.response.data.username) this.toast("Email öň bar");
-          else this.toast("Ýalňyşlyk bar täzeden barlaň");
+          if (err.response.data.username) this.toast(this.$tr.t("Email öň bar"));
+          else this.toast(this.$tr.t("Ýalňyşlyk bar täzeden barlaň"));
         });
     },
 

@@ -1,11 +1,11 @@
 <template>
   <div class="check">
     <div class="container text-center">
-      <h2 v-if="status == 'loading'">Garaşyň ...</h2>
-      <h2 v-if="status == 'error'">Ýalňyşlyk döredi täzeden barlaň</h2>
+      <Loading :height="300" v-if="status == 'loading'"/>
+      <h2 v-if="status == 'error'">{{ $tr.t('Ýalňyşlyk döredi täzeden barlaň')}}</h2>
       <div v-if="status == 'success'">
-        <h2>Sargyt Kabul edildi!</h2>
-        <NuxtLink to="/"> Baş sahypa </NuxtLink>
+        <h2>{{ $tr.t('Sargyt Kabul edildi!')}}</h2>
+        <NuxtLink to="/"> {{ $tr.t('Baş sahypa')}} </NuxtLink>
       </div>
     </div>
   </div>

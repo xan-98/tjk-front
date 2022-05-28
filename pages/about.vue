@@ -18,8 +18,8 @@
                 <h3>{{ $tr.t('Biz barada')}}</h3>
             </div>
         </div>
-        
-        <div class="content">
+        <Loading v-if="isLoading" :height="500"></Loading>
+        <div v-else class="content">
             <div class="container">
                 <div class="c-row">
                     <div class="images">
@@ -58,6 +58,7 @@ export default {
   data() {
     return {
       data: {},
+      isLoading: true
     };
   },
   async fetch() {
@@ -65,6 +66,7 @@ export default {
       "/other/about/3"
     );
     this.data = res.data;
+    this.isLoading = false
   },
 }
 </script>
