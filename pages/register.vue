@@ -6,7 +6,7 @@
           <div class="col-md-12 col-lg-10">
             <div class="d-flex">
               <div class="w-100">
-                <h3 class="mb-4">{{ $tr.t('Ýazylmak')}}</h3>
+                <h3 class="mb-4">{{ $tr.t('Ýazylmak', $store.state.currentLang)}}</h3>
               </div>
             </div>
             <div class="wrap d-md-flex">
@@ -49,7 +49,6 @@
                     v-model="userInfo.address"
                     type="text"
                     class="form-control"
-                    placeholder="Address"
                     required
                   />
                 </div>

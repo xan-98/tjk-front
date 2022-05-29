@@ -8,7 +8,7 @@
             <div class="title">
               <div class="row">
                 <div class="col">
-                  <h4><b>{{ $tr.t('Sargydy tassyklamak')}}</b></h4>
+                  <h4><b>{{ $tr.t('Sargydy tassyklamak', $store.state.currentLang)}}</b></h4>
                 </div>
                 <div class="col align-self-center text-right text-muted">
                   {{ $store.state.cart.length }} {{ $tr.t('harytlar')}}
@@ -50,7 +50,7 @@
             <hr />
             <div class="row">
               <div class="col" style="padding-left: 0">
-                Harytlar {{ $store.state.cart.length }}
+                {{ $tr.t('harytlar')}} {{ $store.state.cart.length }}
               </div>
               <div class="col text-right">{{ getSum() }} TMT</div>
             </div>
@@ -190,6 +190,14 @@ export default {
       });
     },
   },
+
+  
+  // watch: {
+  //   "$store.state.currentLang": function () {
+  //     console.log(this.$store.state.currentLang);
+  //     this.$forceUpdate()
+  //   },
+  // },
 };
 </script>
 

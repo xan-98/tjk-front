@@ -100,7 +100,7 @@
               <div class="col">{{ $tr.t('JEMI BAHASY')}}</div>
               <div class="col text-right">{{ getTotal() }} TMT</div>
             </div>
-            <NuxtLink to="/checkout" class="btn" v-if="$store.state.cart.length">{{ $tr.t('Sargydy tassykla')}}</NuxtLink>
+            <NuxtLink to="/checkout" class="btn" v-if="$store.state.cart.length">{{ $tr.t('Sargydy tassyklamak')}}</NuxtLink>
           </div>
         </div>
       </div>

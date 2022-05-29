@@ -1,7 +1,7 @@
 <template>
   <div class="check">
     <div class="container text-center">
-      <h2>{{ $tr.t('Sargyt Kabul edildi!')}}</h2>
+      <h2>{{ $tr.t('Sargyt Kabul edildi!', $store.state.currentLang)}}</h2>
       <NuxtLink to="/"> {{ $tr.t('Baş sahypa')}} </NuxtLink>
     </div>
   </div>

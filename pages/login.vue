@@ -8,7 +8,7 @@
             <div class="login-wrap p-4 p-md-7">
               <div class="d-flex">
                 <div class="w-100">
-                  <h3 class="mb-4">{{ $tr.t('Giriş')}}</h3>
+                  <h3 class="mb-4">{{ $tr.t('Giriş', $store.state.currentLang)}}</h3>
                 </div>
               </div>
               <form @submit="onSubmitForm" :v-model="valid" class="signin-form">
@@ -18,16 +18,16 @@
                     v-model="userInfo.username"
                     type="email"
                     class="form-control"
-                    placeholder="email"
+                    :placeholder="$tr.t('Email')"
                   />
                 </div>
                 <div class="form-group mb-3">
-                  <label class="label" for="password">{{  $tr.t('Açar sözi')}}</label>
+                  <label class="label" for="password">{{ $tr.t('Açar sözi')}}</label>
                   <input
                     v-model="userInfo.password"
                     type="password"
                     class="form-control"
-                    placeholder="Password"
+                    :placeholder="$tr.t('Açar sözi')"
                     required
                   />
                 </div>
@@ -61,7 +61,7 @@
                 </div>
               </form>
               <p class="text-center">
-                {{ $tr.t('Agza dälmi')}}?
+                {{ $tr.t('Agza dälmi?')}}
                 <NuxtLink to="/register" class="singup"> {{ $tr.t('Ýazylmak')}}</NuxtLink>
               </p>
             </div>

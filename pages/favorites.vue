@@ -4,7 +4,7 @@
       <div class="breadcrumbs">
         <ul>
           <li>
-            <NuxtLink to="/"> {{ $tr.t('Baş sahypa')}} </NuxtLink>
+            <NuxtLink to="/"> {{ $tr.t('Baş sahypa', $store.state.currentLang)}} </NuxtLink>
           </li>
           <li>{{ $tr.t('Halananlar')}}</li>
         </ul>

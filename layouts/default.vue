@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="$store.state.currentLang != ''">
     <Header />
     <Nuxt />
     <Footer />
@@ -19,7 +19,6 @@ export default {
   },
 
   mounted() {
-
      let authExpire = this.$cookies.get('auth_expire');
     if (authExpire) {
       let authRefreshTokenLocal = this.$cookies.get('auth._token_expiration.local')
@@ -55,10 +54,5 @@ export default {
   
   },
 
-  // watch: {
-  //   "$store.state.cart": function () {
-  //     console.log(this.$store.state.cart);
-  //   },
-  // },
 };
 </script>

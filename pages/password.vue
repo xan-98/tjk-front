@@ -18,7 +18,7 @@
 
                                         <div class="c-col">
 
-                                            <label for="password">{{ $tr.t('Açar sözi')}}</label>
+                                            <label for="password">{{ $tr.t('Açar sözi', $store.state.currentLang)}}</label>
                                             <input v-model="userInfo.password" minlength="5" type="password" required>
                                         </div>
 

@@ -8,7 +8,7 @@
             <div class="login-wrap p-4 p-md-7">
               <div class="d-flex">
                 <div class="w-100">
-                  <h3 class="mb-4">{{ $tr.t('Açar sözüni täzelemek')}}</h3>
+                  <h3 class="mb-4">{{ $tr.t('Açar sözüni täzelemek', $store.state.currentLang)}}</h3>
                 </div>
               </div>
               <form @submit="onSubmitForm" :v-model="valid" class="signin-form">

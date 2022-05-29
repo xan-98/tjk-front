@@ -83,7 +83,7 @@
           </div>
 
           <div class="c-col list">
-            <NuxtLink class="title" to="/contact">{{ $tr.t('Habarlaşmak')}}</NuxtLink>
+            <div class="title">{{ $tr.t('Habarlaşmak')}}</div>
 
             <form @submit="onSubmitForm">
               <div>

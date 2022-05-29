@@ -3,7 +3,7 @@
     <div class="container">
       <b-card no-body>
         <b-tabs pills card>
-          <b-tab :title="$tr.t('Meniň profilim')" active>
+          <b-tab :title="$tr.t('Meniň profilim', $store.state.currentLang)" active>
             <div class="container">
               <div class="row">
                 <!-- <div class="col-md-4">
@@ -52,7 +52,7 @@
                     </div>
 
                     <NuxtLink class="password-change" to="/password"
-                      >{{ $tr.t('Paroly täzelemek')}}</NuxtLink
+                      >{{ $tr.t('Açar sözüni täzelemek')}}</NuxtLink
                     >
 
                     <button class="change" type="submit">{{ $tr.t('Üýtget')}}</button>

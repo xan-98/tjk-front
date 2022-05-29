@@ -2,7 +2,7 @@
   <div class="check">
     <div class="container text-center">
       <Loading :height="300" v-if="status == 'loading'"/>
-      <h2 v-if="status == 'error'">{{ $tr.t('Ýalňyşlyk döredi täzeden barlaň')}}</h2>
+      <h2 v-if="status == 'error'">{{ $tr.t('Ýalňyşlyk döredi täzeden barlaň', $store.state.currentLang)}}</h2>
       <div v-if="status == 'success'">
         <h2>{{ $tr.t('Sargyt Kabul edildi!')}}</h2>
         <NuxtLink to="/"> {{ $tr.t('Baş sahypa')}} </NuxtLink>

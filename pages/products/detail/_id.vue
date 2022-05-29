@@ -140,7 +140,7 @@
       </div> -->
 
       <div class="pr-other" v-if="products.length > 1">
-        <h3>{{ $tr.t('Baglanyşykly önümler')}}</h3>
+        <h3>{{ $tr.t('Başga-da saýlaň')}}</h3>
         <div class="row">
           <div
             v-for="(item, index) in products"
@@ -199,7 +199,7 @@ export default {
             let size_i = this.pr.sizes.findIndex(x => x.title == this.pr.activeSize);
             
             if (this.pr.sizes[size_i].value <  this.pr.amount ){
-              this.toast(`${ this.$tr.t('Bu ölçegden galan syny') }: ${this.pr.sizes[size_i].value}`)
+              this.toast(`${ this.$tr.t('Bu ölçegden galan sany') }: ${this.pr.sizes[size_i].value}`)
             }else{
               this.pr.sizes[size_i].value -= this.pr.amount
               console.log(this.pr);
