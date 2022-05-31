@@ -10,10 +10,11 @@
       >
         <div class="slide" v-for="(slide, index) in data" :key="index">
           <div class="wrapper">
-            <img :src='slide["image_" + $store.state.currentLang]
+            <img @load="setLoad(index)" v-show="slide.load" :src='slide["image_" + $store.state.currentLang]
                       ? slide["image_" + $store.state.currentLang]
                       : slide.image' 
             alt="" />
+            <Loading v-if="! slide.load" height="500" ></Loading>
           </div>
         </div>
       </agile>
@@ -38,6 +39,15 @@ export default {
   async mounted() {
  
   },
+
+  methods:{
+    setLoad(index){
+      this.data[index].load = true
+      
+      this.$forceUpdate()
+      console.log(index);
+    }
+  }
 };
 </script>
 

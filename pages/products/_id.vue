@@ -22,7 +22,7 @@
           :key="index"
           class="col-md-4 col-sm-6 py-4"
         >
-          <ProductSingle :product="item" />
+          <ProductSingle :product="item" height="520px"/>
         </div>
       </div>
 

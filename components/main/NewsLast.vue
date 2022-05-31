@@ -14,8 +14,10 @@
           class="col-sm-6 col-md-4 py-2"
         >
           <NuxtLink :to="'/news/' + item.id" class="news-single">
-            <img :src="item.image" alt="News" />
-            <div class="text">
+            <b-skeleton-img v-if="! item.load" height="300px" animation="fade"></b-skeleton-img>
+            <img @load="setLoad(index)"  v-show="item.load" :src="item.image" alt="News" />
+          
+          <div class="text">
               <div class="title">
                 {{
                   item["title_" + $store.state.currentLang]
@@ -55,6 +57,15 @@ export default {
     );
     this.data = res.data.results;
   },
+
+  methods:{
+    setLoad(index){
+      this.data[index].load = true
+      
+      this.$forceUpdate()
+      console.log(index);
+    }
+  }
 };
 </script>
 

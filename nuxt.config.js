@@ -51,7 +51,7 @@ export default {
     'cookie-universal-nuxt',
   ],
   axios: {
-    baseURL: 'http://localhost:8000/api/'
+    baseURL: 'https://tjk.com.tm:8000/api/'
     // xsrfCookieName: 'csrftoken',
     // xsrfHeaderName: 'X-CSRFToken'
   },

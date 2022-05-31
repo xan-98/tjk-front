@@ -4,7 +4,7 @@
       <div class="breadcrumbs">
         <ul>
           <li>
-            <n-link to="/"> {{ $tr.t('Baş sahypa')}} </n-link>
+            <n-link to="/"> {{ $tr.t("Baş sahypa") }} </n-link>
           </li>
           <li>
             <NuxtLink
@@ -32,7 +32,6 @@
           <div class="main">
             <client-only>
               <agile
-                :swipeDistance="30"
                 ref="main"
                 :dots="false"
                 :fade="true"
@@ -43,7 +42,12 @@
                   v-for="(img, index) in pr.images"
                   :key="index"
                 >
-                  <img :src="img.image" alt="Product" />
+                  <b-skeleton-img
+                    v-if="!img.load"
+                    height="600px"
+                    animation="fade"
+                  ></b-skeleton-img>
+                  <img @load="setLoad(index)" v-show="img.load" :src="img.image" alt="Product" />
                 </div>
               </agile>
             </client-only>
@@ -55,6 +59,7 @@
               :slides-to-show="3"
               :dots="false"
               :navButtons="false"
+              :infinite="true"
             >
               <div
                 v-for="(img, index) in pr.images"
@@ -62,7 +67,8 @@
                 class="slide"
                 @click="$refs.main.goTo(index)"
               >
-                <img :src="img.image" alt="Product" />
+
+                <img  :src="img.image" alt="Product" />
               </div>
             </agile>
           </div>
@@ -70,7 +76,7 @@
 
         <div class="right-col">
           <!-- <div class="status">{{ $tr.t('täze') }}</div> -->
-          <br>
+          <br />
           <div class="name">
             {{
               pr["title_" + $store.state.currentLang]
@@ -88,7 +94,7 @@
           </div>
 
           <div class="sizes">
-            <div class="text">{{ $tr.t('Ölçegleri')}}:</div>
+            <div class="text">{{ $tr.t("Ölçegleri") }}:</div>
 
             <ul>
               <li
@@ -96,7 +102,8 @@
                 :key="index"
                 @click="selectSize(s.title)"
               >
-                <div v-if="s.value > 0"
+                <div
+                  v-if="s.value > 0"
                   class="item"
                   :class="{ active: pr.activeSize == s.title ? true : false }"
                 >
@@ -107,12 +114,16 @@
           </div>
 
           <div class="action-bar">
-            <button class="add-to-cart" @click="addToCart()" >
+            <button class="add-to-cart" @click="addToCart()">
               <BIconCart />
-              {{ $tr.t('sebede goş')}}
+              {{ $tr.t("sebede goş") }}
             </button>
 
-            <button @click="addFavorite()" class="add-to-fav" :class="{active: isFav}">
+            <button
+              @click="addFavorite()"
+              class="add-to-fav"
+              :class="{ active: isFav }"
+            >
               <BIconHeart />
             </button>
           </div>
@@ -140,7 +151,7 @@
       </div> -->
 
       <div class="pr-other" v-if="products.length > 1">
-        <h3>{{ $tr.t('Başga-da saýlaň')}}</h3>
+        <h3>{{ $tr.t("Başga-da saýlaň") }}</h3>
         <div class="row">
           <div
             v-for="(item, index) in products"
@@ -164,7 +175,7 @@ export default {
     return {
       pr: {},
       products: [],
-      isFav:false
+      isFav: false,
     };
   },
 
@@ -175,7 +186,7 @@ export default {
     product.data.amount = 1;
     product.data.activeSize = false;
     this.pr = product.data;
-    
+
     this.isFav = this.isFavoriteFunction();
 
     const res = await this.$axios.get(
@@ -194,25 +205,30 @@ export default {
       this.pr.amount++;
     },
 
-    addToCart(){
-        if(this.pr.activeSize){
-            let size_i = this.pr.sizes.findIndex(x => x.title == this.pr.activeSize);
-            
-            if (this.pr.sizes[size_i].value <  this.pr.amount ){
-              this.toast(`${ this.$tr.t('Bu ölçegden galan sany') }: ${this.pr.sizes[size_i].value}`)
-            }else{
-              this.pr.sizes[size_i].value -= this.pr.amount
-              console.log(this.pr);
-              this.$store.commit("addCart", { ...this.pr } );
-              this.toast(this.$tr.t('Sebede goşuldy'))
-            }
-            
-        }else{
-            this.toast(this.$tr.t('Ölçeg saýlaň'))
-        }
-    },  
+    addToCart() {
+      if (this.pr.activeSize) {
+        let size_i = this.pr.sizes.findIndex(
+          (x) => x.title == this.pr.activeSize
+        );
 
-     toast(message, append = false) {
+        if (this.pr.sizes[size_i].value < this.pr.amount) {
+          this.toast(
+            `${this.$tr.t("Bu ölçegden galan sany")}: ${
+              this.pr.sizes[size_i].value
+            }`
+          );
+        } else {
+          this.pr.sizes[size_i].value -= this.pr.amount;
+          console.log(this.pr);
+          this.$store.commit("addCart", { ...this.pr });
+          this.toast(this.$tr.t("Sebede goşuldy"));
+        }
+      } else {
+        this.toast(this.$tr.t("Ölçeg saýlaň"));
+      }
+    },
+
+    toast(message, append = false) {
       this.$bvToast.toast(`${message}`, {
         toaster: "b-toaster-top-center",
         solid: true,
@@ -222,25 +238,22 @@ export default {
     },
 
     addFavorite() {
-      if(this.$auth.loggedIn)
-      if (this.isFav) {
-        this.RemoveFavorite();
-      } else {
-
-        this.isFav = true;
-        this.$axios
-          .post("/addfavorite", { product_id: this.pr.id })
-          .then(async (res) => {
-            const favs = await this.$axios.get("/getfavorite");
-            this.$store.commit("setFavorites", favs.data.results);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-
-      else
-      this.toast(this.$tr.t('Birinji ulgama giriň'))
+      if (this.$auth.loggedIn)
+        if (this.isFav) {
+          this.RemoveFavorite();
+        } else {
+          this.isFav = true;
+          this.$axios
+            .post("/addfavorite", { product_id: this.pr.id })
+            .then(async (res) => {
+              const favs = await this.$axios.get("/getfavorite");
+              this.$store.commit("setFavorites", favs.data.results);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      else this.toast(this.$tr.t("Birinji ulgama giriň"));
     },
 
     isFavoriteFunction() {
@@ -251,7 +264,7 @@ export default {
     },
 
     RemoveFavorite() {
-      this.isFav = false
+      this.isFav = false;
       this.$axios
         .delete("/addfavorite", { data: { product_id: this.pr.id } })
         .then(async (res) => {
@@ -262,11 +275,15 @@ export default {
           console.log(err);
         });
     },
-  },
 
+    setLoad(index) {
+      this.pr.images[index].load = true;
+
+      this.$forceUpdate();
+    },
+  },
 };
 </script>
 
 <style>
-
 </style>

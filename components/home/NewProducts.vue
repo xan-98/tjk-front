@@ -8,7 +8,7 @@
 
       <div class="row">
         <div v-for="(item, index) in data" :key="index" class="col-sm-12 col-md-4 col-lg-3">
-          <ProductSingle :product="item" :category="true"/>
+            <ProductSingle :product="item" :category="true"/>
         </div>
       </div>
     </div>

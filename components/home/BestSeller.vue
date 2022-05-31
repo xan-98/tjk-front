@@ -9,7 +9,7 @@
           :key="index"
           class="col-sm-12 col-md-4"
         >
-          <ProductSingle :product="item" :category="1" />
+          <ProductSingle :product="item" :category="1" height="520px"/>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@ export default {
 
   async fetch() {
     const res = await this.$axios.get(
-      "/products/products/?ordering=-sellcount&limit=8"
+      "/products/products/?ordering=-sellcount&limit=6"
     );
     this.data = res.data.results;
   },

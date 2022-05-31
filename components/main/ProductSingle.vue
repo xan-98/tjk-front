@@ -9,7 +9,8 @@
       </NuxtLink>
     </div>
     <NuxtLink :to="'/products/detail/' + product.id">
-      <img :src="product.images[0].image" alt="product" />
+      <b-skeleton-img v-if="isLoad == false" :height="height ? height : '370px'" animation="fade"></b-skeleton-img>
+      <img v-show="isLoad" @load="test" :src="product.images[0].image" :height="height ? height : '370px'" alt="product" />
 
       <div class="name">
         {{
@@ -34,7 +35,7 @@
 <script>
 import { BIconHeart, BIconCart } from "bootstrap-vue";
 export default {
-  props: ["product",'category'],
+  props: ["product",'category','height'],
 
   components: {
     BIconHeart,
@@ -44,6 +45,7 @@ export default {
   data() {
     return {
       isFav: false,
+      isLoad: false
     };
   },
 
@@ -51,6 +53,11 @@ export default {
     this.isFav = this.isFavoriteFunction();
   },
   methods: {
+    test(){
+      this.isLoad = true;
+      console.log(this.isLoad);
+    },
+
     toast(message, append = false) {
       this.$bvToast.toast(`${message}`, {
         toaster: "b-toaster-top-center",

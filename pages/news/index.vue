@@ -4,10 +4,10 @@
       <div class="breadcrumbs">
         <ul>
           <li>
-            <NuxtLink to="/"> {{ $tr.t('Baş sahypa')}} </NuxtLink>
+            <NuxtLink to="/"> {{ $tr.t("Baş sahypa") }} </NuxtLink>
           </li>
 
-          <li>{{ $tr.t('Täzelikler')}}</li>
+          <li>{{ $tr.t("Täzelikler") }}</li>
         </ul>
       </div>
 
@@ -19,7 +19,18 @@
           class="col-sm-6 col-md-4 py-2"
         >
           <NuxtLink :to="'/news/' + item.id" class="news-single">
-            <img :src="item.image" alt="News" />
+            <b-skeleton-img
+              v-if="!item.load"
+              height="300px"
+              animation="fade"
+            ></b-skeleton-img>
+            <img
+              @load="setLoad(index)"
+            
+              :src="item.image"
+              alt="News"
+            />
+
             <div class="text">
               <div class="title">
                 {{
@@ -61,16 +72,17 @@ export default {
   data() {
     return {
       data: [],
-      currentPage:1,
-      rows:0,
+      currentPage: 1,
+      rows: 0,
       isLoading: true,
-      perPage: 9
-
+      perPage: 9,
     };
   },
 
   async fetch() {
-    const res = await this.$axios.get(`/news/tazeliks/?ordering=-created_at&limit=${this.perPage}`);
+    const res = await this.$axios.get(
+      `/news/tazeliks/?ordering=-created_at&limit=${this.perPage}`
+    );
     this.data = res.data.results;
     this.rows = res.data.count;
     this.isLoading = false;
@@ -78,11 +90,21 @@ export default {
 
   methods: {
     async changePagination(v) {
-      this.isLoading = true
-      const res = await this.$axios.get(`/news/tazeliks/?ordering=-created_at&limit=${this.perPage}&offset=${this.perPage * (v-1)}`);
+      this.isLoading = true;
+      const res = await this.$axios.get(
+        `/news/tazeliks/?ordering=-created_at&limit=${this.perPage}&offset=${
+          this.perPage * (v - 1)
+        }`
+      );
       this.data = res.data.results;
 
       this.isLoading = false;
+    },
+
+    setLoad(index) {
+      this.data[index].load = true;
+
+      this.$forceUpdate();
     },
   },
 };
