@@ -115,7 +115,7 @@
     </footer>
     <div class="copyright">
       <div class="container">
-        &copy; {{ new Date().getFullYear() }} <b>{{ $tr.t('Ähli hukuklar goragly')}}.</b>
+        &copy; {{ new Date().getFullYear() }} <b>{{ $tr.t('Ähli hukuklar goragly.')}}</b>
       </div>
     </div>
   </div>
