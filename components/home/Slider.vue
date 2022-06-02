@@ -45,7 +45,6 @@ export default {
       this.data[index].load = true
       
       this.$forceUpdate()
-      console.log(index);
     }
   }
 };

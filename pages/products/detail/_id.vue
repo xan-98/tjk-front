@@ -31,12 +31,7 @@
         <div class="pr-slider">
           <div class="main">
             <client-only>
-              <agile
-                ref="main"
-                :dots="false"
-                :fade="true"
-                :navButtons="false"
-              >
+              <agile ref="main" :dots="false" :fade="true" :navButtons="false">
                 <div
                   class="slide"
                   v-for="(img, index) in pr.images"
@@ -47,7 +42,21 @@
                     height="600px"
                     animation="fade"
                   ></b-skeleton-img>
-                  <img @load="setLoad(index)" v-show="img.load" :src="img.image" alt="Product" />
+              
+
+                  <figure
+                   
+                    v-show="img.load"
+                    class="zoom"
+                    @mousemove="zoom"
+          
+                    :style="{'background-image': 'url(' + img.image + ')'}"
+                  >
+                    <img  @load="setLoad(index)"
+                      :src="img.image"
+                      alt="Product"
+                    />
+                  </figure>
                 </div>
               </agile>
             </client-only>
@@ -67,8 +76,7 @@
                 class="slide"
                 @click="$refs.main.goTo(index)"
               >
-
-                <img  :src="img.image" alt="Product" />
+                <img :src="img.image" alt="Product" />
               </div>
             </agile>
           </div>
@@ -219,7 +227,6 @@ export default {
           );
         } else {
           this.pr.sizes[size_i].value -= this.pr.amount;
-          console.log(this.pr);
           this.$store.commit("addCart", { ...this.pr });
           this.toast(this.$tr.t("Sebede goşuldy"));
         }
@@ -281,9 +288,39 @@ export default {
 
       this.$forceUpdate();
     },
+
+    zoom(e) {
+      var zoomer = e.currentTarget;
+      var offsetX,offsetY,x,y
+      try {
+        e.offsetX ? (offsetX = e.offsetX) : (offsetX = e.touches[0].pageX);
+        e.offsetY ? (offsetY = e.offsetY) : (offsetX = e.touches[0].pageX);
+        x = (offsetX / zoomer.offsetWidth) * 100;
+        y = (offsetY / zoomer.offsetHeight) * 100;
+        zoomer.style.backgroundPosition = x + "% " + y + "%";
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 };
 </script>
 
-<style>
+<style lang="scss">
+figure.zoom {
+  & img:hover {
+    opacity: 0;
+  }
+  img {
+    transition: opacity 0.5s;
+    display: block;
+    width: 100%;
+  }
+  background-position: 50% 50%;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  cursor: zoom-in;
+  background-size: 190%;
+}
 </style>

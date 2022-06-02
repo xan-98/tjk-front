@@ -121,7 +121,7 @@ export default {
         this.$axios
           .get("/check-user?email=" + this.userInfo.username)
           .then((res) => {
-            console.log(res.data);
+
             if (res.data.user == "no") {
               this.toast( this.$tr.t("Beýle ulanyjy ýok, agza bolmagyňyzy haýyş edýaris"));
             }else{
