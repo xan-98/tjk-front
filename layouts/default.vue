@@ -1,9 +1,12 @@
 <template>
-  <div v-if="$store.state.currentLang != ''">
+<div>
+  <Loading v-if="isLoad == false" height="800"></Loading>
+  <div v-if="$store.state.currentLang != '' && isLoad == true">
     <Header />
     <Nuxt />
     <Footer />
   </div>
+</div>
 </template>
 
 <script>
@@ -11,11 +14,14 @@
 export default {
   // mixins: [remember],
   data() {
-    return {};
+    return {
+      isLoad:false
+    };
   },
   async fetch() {
     const res = await this.$axios.get("/info");
     this.$store.commit("setInfo", res.data.results[0]);
+      this.isLoad = true
   },
 
   mounted() {

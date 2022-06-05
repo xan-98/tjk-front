@@ -1,6 +1,7 @@
 <template>
   <div class="detail">
-    <div class="container">
+    <Loading v-if="isLoad == false" height="600"></Loading>
+    <div v-else class="container">
       <div class="breadcrumbs">
         <ul>
           <li>
@@ -184,6 +185,7 @@ export default {
       pr: {},
       products: [],
       isFav: false,
+      isLoad: false
     };
   },
 
@@ -191,6 +193,7 @@ export default {
     var product = await this.$axios.get(
       `/products/products/${this.$route.params.id}`
     );
+    this.isLoad = true
     product.data.amount = 1;
     product.data.activeSize = false;
     this.pr = product.data;

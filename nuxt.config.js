@@ -49,6 +49,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
     'cookie-universal-nuxt',
+    
   ],
   axios: {
     baseURL: 'https://tjk.com.tm:8000/api/'
@@ -87,6 +88,13 @@ export default {
       login: '/login',
       
     },
+
+    cookie: {
+      options: {
+        sameSite: 'Strict',
+        secure: true
+      }
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
