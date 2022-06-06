@@ -138,6 +138,8 @@ export default {
         payment_method: this.payment,
 
         ...this.userInfo,
+
+        device: 'Web'
       };
 
       this.$axios
