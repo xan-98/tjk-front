@@ -16,7 +16,7 @@
         <div
           v-for="(item, index) in data"
           :key="index"
-          class="col-sm-6 col-md-4 py-2"
+          class="col-sm-6 col-md-4 py-2 mb-3"
         >
           <NuxtLink :to="'/news/' + item.id" class="news-single">
             <b-skeleton-img
@@ -25,6 +25,7 @@
               animation="fade"
             ></b-skeleton-img>
             <img
+              v-show="item.load"
               @load="setLoad(index)"
             
               :src="item.image"
@@ -40,12 +41,7 @@
                 }}
               </div>
 
-              <div class="description">
-                {{
-                  item["description_" + $store.state.currentLang]
-                    ? item["description_" + $store.state.currentLang]
-                    : item.description
-                }}
+              <div class="description" v-html='item["description_" + $store.state.currentLang] ? item["description_" + $store.state.currentLang]: item.description'>
               </div>
 
               <div class="date">{{ item.created_at }}</div>

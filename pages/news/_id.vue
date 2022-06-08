@@ -1,6 +1,7 @@
 <template>
   <div class="news-page">
-    <div class="container">
+    <Loading v-if="isLoad == false" height="600"></Loading>
+    <div v-else class="container">
       <div class="breadcrumbs">
         <ul>
           <li>
@@ -42,12 +43,7 @@
         <br />
         <img class="news-img" :src="data.image" alt="" />
         
-        <div class="description">
-          {{
-            data["description_" + $store.state.currentLang]
-              ? data["description_" + $store.state.currentLang]
-              : data.description
-          }}
+        <div class="description" v-html='data["description_" + $store.state.currentLang] ? data["description_" + $store.state.currentLang]: data.description'>
         </div>
       </div>
     </div>
@@ -63,6 +59,7 @@ export default {
   data() {
     return {
       data: {},
+      isLoad: false
     };
   },
 
@@ -71,6 +68,7 @@ export default {
       "/news/tazeliks/" + this.$route.params.id
     );
     this.data = res.data;
+    this.isLoad = true
   },
 };
 </script>

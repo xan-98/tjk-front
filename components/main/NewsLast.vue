@@ -26,12 +26,7 @@
                 }}
               </div>
 
-              <div class="description">
-                {{
-                  item["description_" + $store.state.currentLang]
-                    ? item["description_" + $store.state.currentLang]
-                    : item.description
-                }}
+              <div class="description" v-html='item["description_" + $store.state.currentLang] ? item["description_" + $store.state.currentLang]: item.description'>
               </div>
 
               <div class="date">{{ item.created_at }}</div>
