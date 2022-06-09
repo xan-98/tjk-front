@@ -16,7 +16,7 @@
         <div
           v-for="(item, index) in data"
           :key="index"
-          class="col-sm-6 col-md-4 py-2 mb-3"
+          class="col-sm-6 col-md-3 py-2 mb-3"
         >
           <NuxtLink :to="'/news/' + item.id" class="news-single">
             <b-skeleton-img
