@@ -239,7 +239,7 @@ export default {
 
     dateFormat(dt) {
       var d = new Date(dt);
-      return d.getDay() + "/" + d.getMonth() + 1 + "/" + d.getFullYear();
+      return d.getDay() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
     },
 
     accordionActive(index, event) {
