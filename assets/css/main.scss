@@ -233,10 +233,11 @@ ul {
             margin: 0;
 
             span {
-                font-size: 18px;
+                font-size: 17px;
                 line-height: 21px;
                 text-align: center;
                 letter-spacing: -0.065em;
+                white-space: nowrap;
             }
         }
     }
