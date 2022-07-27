@@ -13,7 +13,13 @@
 
           <NuxtLink to="/" class="logo">
             <img src="/logo.png" alt />
-            <h1>
+
+            <h1 v-if="$store.state.currentLang == 'ru'" >
+              <span>{{ $tr.t("jins toplumy")}}</span>
+              {{ $tr.t('Türkmenbaşy') }}
+            </h1>
+
+            <h1 v-else >
               {{ $tr.t('Türkmenbaşy') }}
               <span>{{ $tr.t("jins toplumy")}}</span>
             </h1>

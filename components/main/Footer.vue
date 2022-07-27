@@ -6,10 +6,17 @@
           <div class="c-col">
             <NuxtLink to="/" class="logo">
               <img src="/logo.png" alt="Logo" />
-              <h1>
+              
+              <h1 v-if="$store.state.currentLang == 'ru'">
+                <div>{{ $tr.t("jins toplumy")}}</div>
+                {{ $tr.t('Türkmenbaşy') }}
+              </h1>
+              
+              <h1 v-else >
                 {{ $tr.t('Türkmenbaşy') }}
                 <div>{{ $tr.t("jins toplumy")}}</div>
               </h1>
+
             </NuxtLink>
             <div class="address">
               {{
