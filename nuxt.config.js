@@ -71,7 +71,7 @@ export default {
           const posts = res.data.results
           
           posts.forEach(post => {
-            const short_desc = post.description.replace(/<[^>]*>?/gm, '').split(' ').slice(1).join(' ');
+            const short_desc = post.description.replace(/<[^>]*>?/gm, '').split(' ').slice(0,15).join(' ');
             var date = post.created_at.split('.')
             date = `${date[1]}.${Number(date[0])+1}.${date[2]}`
             feed.addItem({
