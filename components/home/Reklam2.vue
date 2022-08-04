@@ -4,11 +4,11 @@
         <div class="c-row">
             <div class="item left">
                 <NuxtLink to="#" class="title">Tomus Ýygyndysy</NuxtLink>
-                <img src="~/assets/img/reklam21.png" alt="reklam">
+                <!-- <img src="~/assets/img/reklam21.png" alt="reklam"> -->
             </div>
 
             <div class="center">
-                <img src="~/assets/img/reklam22.png" alt="">
+                <!-- <img src="~/assets/img/reklam22.png" alt=""> -->
                 
                 <div class="text">
                     <h3>DENIM BAHARY</h3>
@@ -17,7 +17,7 @@
             </div>
             
             <div class="item right">
-                <img src="~/assets/img/reklam23.png" alt="reklam">
+                <!-- <img src="~/assets/img/reklam23.png" alt="reklam"> -->
                 <NuxtLink to="#" class="title">Indirim 50%</NuxtLink>
             </div>
 

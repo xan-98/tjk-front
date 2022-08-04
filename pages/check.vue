@@ -1,7 +1,13 @@
 <template>
   <div class="check">
     <div class="container text-center">
-      <h2>{{ $tr.t('Sargyt Kabul edildi!', $store.state.currentLang)}}</h2>
+       <h2 v-if="new Date().getHours() > 19 || new Date().getHours() < 8">
+          {{ $tr.t('Sargyt Kabul edildi! Ertir sagat 13:00 çenli eliňizde bolar', $store.state.currentLang)}}
+        </h2>
+
+        <h2 v-else>
+          {{ $tr.t('Sargyt Kabul edildi!')}}
+        </h2>
       <NuxtLink to="/"> {{ $tr.t('Baş sahypa')}} </NuxtLink>
     </div>
   </div>

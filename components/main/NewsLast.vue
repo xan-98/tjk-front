@@ -3,7 +3,14 @@
     <div class="container">
 
       <div class="title">
-        <h3>{{ $tr.t('Soňky täzelikler')}}</h3>
+        <div class="left-col">
+          <h3>{{ $tr.t('Soňky täzelikler')}}</h3>
+          
+          <a href="/rss">
+            <img src="~/assets/img/rss.png" alt="">
+          </a>
+
+        </div>
         <a href="/news" class="link">{{ $tr.t('Hemmesini görkez')}}</a>
       </div>
 

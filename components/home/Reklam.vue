@@ -18,12 +18,12 @@
 
                 <div class="right-col">
                     <NuxtLink to="#" class="item">
-                        <img src="~/assets/img/zenan.png" alt="women">
+                        <!-- <img src="~/assets/img/zenan.png" alt="women"> -->
                         <div class="center-text">Zenan</div>
                     </NuxtLink>
 
                     <NuxtLink to="#" class="item">
-                        <img src="~/assets/img/erkek.png" alt="women">
+                        <!-- <img src="~/assets/img/erkek.png" alt="women"> -->
                         <div class="center-text">Erkek</div>
                     </NuxtLink>
                 </div>

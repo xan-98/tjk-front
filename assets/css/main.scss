@@ -1246,7 +1246,7 @@ footer {
         font-size: 36px;
         line-height: 45px;
         color: #0D0D0D;
-        margin-bottom: 30px;
+        padding-bottom: 30px;
     }
 
     .title {
@@ -1256,6 +1256,16 @@ footer {
         align-items: center;
         gap: 30px;
         justify-content: space-between;
+
+        .left-col{
+            display: flex; 
+            gap: 15px; 
+            align-items: flex-start;
+
+            img{
+                width: 37px;
+            }
+        }
 
         h3 {
             font-weight: 500;
