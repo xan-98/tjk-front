@@ -1,3 +1,4 @@
+import axios from 'axios'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -49,8 +50,53 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
     'cookie-universal-nuxt',
-    
+
+    '@nuxtjs/feed',
   ],
+
+  feed: [
+    {
+      path: '/rss', // The route to your feed.
+      async create(feed) {
+        feed.options = {
+          title: 'Türkmenbaşy jins toplumy - www.tjk.com.tm',
+          link: 'https://www.tjk.com.tm/rss',
+          description: '«Gap-Türkmen» ýapyk görnüşli paýdarlar jemgyýetiniň Türkmenbaşy jins toplumynynda 8-den 15 unsiýa çenli galyňlykda gök, gara, ýaşyl we goňur reňklerde ýokary hilli jins matalary öndürilýär.',
+          
+          image:'https://www.tjk.com.tm/logo.png',
+        }
+
+        try {
+          const res = await axios.get('https://tjk.com.tm:8000/api/news/tazeliks/?ordering=-created_at&limit=10')
+          const posts = res.data.results
+          
+          posts.forEach(post => {
+            const short_desc = post.description.replace(/<[^>]*>?/gm, '').split(' ').slice(1).join(' ');
+            var date = post.created_at.split('.')
+            date = `${date[1]}.${Number(date[0])+1}.${date[2]}`
+            feed.addItem({
+              title: post.title,
+              id: 'https://tjk.com.tm/news/' + post.id,
+              link: 'https://tjk.com.tm/news/' + post.id,
+              description: short_desc,
+              content: post.description,
+              image: post.image,
+              date: new Date(date)
+            })
+          })
+          
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      cacheTime: 1000 * 60 * 15, // How long should the feed be cached
+      type: 'rss2', // Can be: rss2, atom1, json1
+      // data: ['Some additional data'] // Will be passed as 2nd argument to `create` function
+    }
+  ],
+
+
+
   axios: {
     baseURL: 'https://tjk.com.tm:8000/api/'
     // baseURL: 'http://localhost:8000/api/'
@@ -58,7 +104,7 @@ export default {
     // xsrfHeaderName: 'X-CSRFToken'
   },
 
-  
+
   auth: {
     strategies: {
       local: {
@@ -76,18 +122,18 @@ export default {
           },
           logout: false,
           tokenType: 'Bearer',
-          
+
         }
       }
     },
-    
+
     localStorage: false,
-    
+
     redirect: {
       home: '/',
       logout: '/',
       login: '/login',
-      
+
     },
 
     cookie: {
