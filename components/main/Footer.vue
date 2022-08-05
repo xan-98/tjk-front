@@ -53,6 +53,12 @@
                 <BIconEnvelope></BIconEnvelope>{{ $store.state.info.email }}
               </a>
             </div>
+            
+            <div class="contacts">
+              <a href="/rss">
+                <BIconRss></BIconRss>RSS
+              </a>
+            </div>
           </div>
 
           <div class="c-col list">
@@ -129,9 +135,9 @@
 </template>
 
 <script>
-import { BIconTelephone, BIconEnvelope, BIconPrinter } from "bootstrap-vue";
+import { BIconTelephone, BIconEnvelope, BIconPrinter,BIconRss } from "bootstrap-vue";
 export default {
-  components: { BIconTelephone, BIconEnvelope, BIconPrinter },
+  components: { BIconTelephone, BIconEnvelope, BIconPrinter, BIconRss },
 
   data() {
     return {
