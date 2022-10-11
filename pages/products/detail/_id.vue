@@ -112,12 +112,16 @@
                 @click="selectSize(s.title)"
               >
                 <div
-                  v-if="s.value > 0"
                   class="item"
                   :class="{ active: pr.activeSize == s.title ? true : false }"
                 >
                   {{ s.title }}
                 </div>
+                
+                <!-- <div v-if="s.value > 0" class="item" :class="{ active: pr.activeSize == s.title ? true : false }">
+                  {{ s.title }}
+                </div> -->
+
               </li>
             </ul>
           </div>
@@ -222,17 +226,22 @@ export default {
           (x) => x.title == this.pr.activeSize
         );
 
-        if (this.pr.sizes[size_i].value < this.pr.amount) {
-          this.toast(
-            `${this.$tr.t("Bu ölçegden galan sany")}: ${
-              this.pr.sizes[size_i].value
-            }`
-          );
-        } else {
-          this.pr.sizes[size_i].value -= this.pr.amount;
-          this.$store.commit("addCart", { ...this.pr });
-          this.toast(this.$tr.t("Sebede goşuldy"));
-        }
+        this.pr.sizes[size_i].value -= this.pr.amount;
+        this.$store.commit("addCart", { ...this.pr });
+        this.toast(this.$tr.t("Sebede goşuldy"));
+
+
+        // if (this.pr.sizes[size_i].value < this.pr.amount) {
+        //   this.toast(
+        //     `${this.$tr.t("Bu ölçegden galan sany")}: ${
+        //       this.pr.sizes[size_i].value
+        //     }`
+        //   );
+        // } else {
+        //   this.pr.sizes[size_i].value -= this.pr.amount;
+        //   this.$store.commit("addCart", { ...this.pr });
+        //   this.toast(this.$tr.t("Sebede goşuldy"));
+        // }
       } else {
         this.toast(this.$tr.t("Ölçeg saýlaň"));
       }

@@ -14,19 +14,23 @@
           <NuxtLink to="/" class="logo">
             <img src="/logo.png" alt />
 
-            <h1 v-if="$store.state.currentLang == 'ru'" >
-              <span>{{ $tr.t("jins toplumy")}}</span>
-              {{ $tr.t('Türkmenbaşy') }}
+            <h1 v-if="$store.state.currentLang == 'ru'">
+              <span>{{ $tr.t("jins toplumy") }}</span>
+              {{ $tr.t("Türkmenbaşy") }}
             </h1>
 
-            <h1 v-else >
-              {{ $tr.t('Türkmenbaşy') }}
-              <span>{{ $tr.t("jins toplumy")}}</span>
+            <h1 v-else>
+              {{ $tr.t("Türkmenbaşy") }}
+              <span>{{ $tr.t("jins toplumy") }}</span>
             </h1>
           </NuxtLink>
           <div class="right-col">
             <form @submit="goSearch" class="search">
-              <input v-model="search" type="text" :placeholder="$tr.t('Gözle')" />
+              <input
+                v-model="search"
+                type="text"
+                :placeholder="$tr.t('Gözle')"
+              />
               <BIconSearch @click="goSearch" />
             </form>
 
@@ -39,7 +43,7 @@
 
                 <NuxtLink v-else to="/login">
                   <b-icon-person></b-icon-person>
-                  <div class="title">{{ $tr.t('Giriş')}}</div>
+                  <div class="title">{{ $tr.t("Giriş") }}</div>
                 </NuxtLink>
               </div>
 
@@ -51,7 +55,7 @@
               <div class="cart">
                 <NuxtLink to="/cart">
                   <img src="~/assets/img/cart-bag.svg" alt="cart" />
-                  <div class="title">{{ $tr.t('Sebet')}}</div>
+                  <div class="title">{{ $tr.t("Sebet") }}</div>
                   <div v-if="$store.state.cart.length" class="count">
                     {{ $store.state.cart.length }}
                   </div>
@@ -74,7 +78,7 @@
         <form @submit="goSearch" class="m-search">
           <input v-model="search" type="text" :placeholder="$tr.t('Gözle')" />
           <button class="s-btn" @click="goSearch">
-            <BIconSearch  />
+            <BIconSearch />
           </button>
         </form>
 
@@ -105,12 +109,13 @@
         <div class="close-btn" @click="isActive = !isActive">x</div>
         <ul>
           <li v-for="(cat, index) in $store.state.category" :key="index">
-            <NuxtLink :to="'/' + cat.slug">{{
+            <NuxtLink :to="'/products/' + cat.id">{{
               cat["title_" + $store.state.currentLang]
                 ? cat["title_" + $store.state.currentLang]
                 : cat.title
             }}</NuxtLink>
           </li>
+
           <!-- <li>
             <NuxtLink to="/new-products" class="new-color">Täze önümler</NuxtLink>
           </li> -->
@@ -128,12 +133,12 @@
 
           <NuxtLink to="/login" class="profile-icon" v-else>
             <b-icon-person></b-icon-person>
-            <span>{{ $tr.t('Giriş')}}</span>
+            <span>{{ $tr.t("Giriş") }}</span>
           </NuxtLink>
 
           <NuxtLink to="/favorites" class="favorit-icon">
             <BIconHeart />
-            <span>{{ $tr.t('Halananlar')}}</span>
+            <span>{{ $tr.t("Halananlar") }}</span>
           </NuxtLink>
         </div>
 
@@ -150,7 +155,10 @@
             </a>
           </li>
           <li>
-            <a style="text-transform: lowercase;" :href="'mailto:' + $store.state.info.email">
+            <a
+              style="text-transform: lowercase"
+              :href="'mailto:' + $store.state.info.email"
+            >
               <BIconEnvelope />{{ $store.state.info.email }}
             </a>
           </li>
