@@ -28,6 +28,7 @@ export default {
   plugins: [
     '~/plugins/vue-agile.js',
     '~/plugins/tr.js',
+    '~/plugins/axios.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
