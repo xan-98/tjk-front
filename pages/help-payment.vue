@@ -1,0 +1,50 @@
+<template>
+  <div class="help-order about">
+    <div class="c-header">
+      <div class="container">
+        <div class="breadcrumbs">
+          <ul>
+            <li>
+              <n-link to="/main"> {{ $tr.t("Baş sahypa") }} </n-link>
+            </li>
+            <li>{{ $tr.t("Töleg tertibi we eltip bermek") }}</li>
+          </ul>
+        </div>
+
+        <h3>{{ $tr.t("Töleg tertibi we eltip bermek") }}</h3>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="container">
+        <div
+          class="wrapper"
+          v-html="
+            data['description_' + $store.state.currentLang]
+              ? data['description_' + $store.state.currentLang]
+              : data.description
+          "
+        ></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      data: {},
+    };
+  },
+  mounted() {
+    this.$store.commit("change_first");
+  },
+  async fetch() {
+    const res = await this.$axios.get("/other/about/2");
+    this.data = res.data;
+  },
+};
+</script>
+
+<style></style>
