@@ -31,7 +31,7 @@ export default {
   },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: ['vue-ssr-carousel/nuxt'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -92,8 +92,8 @@ export default {
   ],
 
   axios: {
-    baseURL: "https://tjk.com.tm/api/",
-    // baseURL: 'http://localhost:8000/api/'
+     baseURL: "https://tjk.com.tm/api/",
+    //baseURL: 'http://localhost:8000/api/'
     // xsrfCookieName: 'csrftoken',
     // xsrfHeaderName: 'X-CSRFToken'
   },

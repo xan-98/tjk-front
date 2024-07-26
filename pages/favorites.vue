@@ -4,7 +4,7 @@
       <div class="breadcrumbs">
         <ul>
           <li>
-            <NuxtLink to="/main">
+            <NuxtLink to="/">
               {{ $tr.t("Baş sahypa", $store.state.currentLang) }}
             </NuxtLink>
           </li>

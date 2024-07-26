@@ -34,7 +34,6 @@ export default {
       "/products/products/?ordering=-created&limit=8"
     );
     this.data = res.data.results;
-    console.log(res.data.results, "p==========================");
   },
 };
 </script>

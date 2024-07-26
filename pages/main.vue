@@ -1,12 +1,32 @@
 <template>
   <div>
-    <div class="index">
-      <Slider />
-
-      <NewProducts />
-      <Banner />
-      <BestSeller />
-      <NewsLast />
+    <div class="flex w-full gap-3">
+      <NuxtLink to="/products/1" class="w-1/2 relative">
+        <p
+          class="absolute top-20 md:top-8 text-center w-full font-bold font-inter"
+        >
+          <span class="md:text-5xl text-2xl font-bold inline">&#183;</span
+          ><span class="md:text-4xl text-xl"> Zenan</span>
+        </p>
+        <img
+          class="w-full h-[130vh] object-cover md:object-cover"
+          src="/ayal.jpg"
+          alt=""
+        />
+      </NuxtLink>
+      <NuxtLink to="/products/2" class="w-1/2 relative">
+        <p
+          class="absolute top-20 md:top-8 text-center w-full font-bold font-inter"
+        >
+          <span class="md:text-5xl text-2xl font-bold inline">&#183;</span
+          ><span class="md:text-4xl text-xl"> Erkek</span>
+        </p>
+        <img
+          class="w-full h-[130vh] object-cover md:object-cover"
+          src="/erkek.jpg"
+          alt=""
+        />
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -15,11 +35,10 @@
 import BestSeller from "../components/home/BestSeller.vue";
 export default {
   name: "IndexPage",
+
   components: { BestSeller },
 
   mounted() {
-    this.$store.commit("change_first");
-
     setTimeout(() => {
       let authExpire = this.$cookies.get("auth_expire");
       if (authExpire) {
@@ -44,7 +63,7 @@ export default {
           path: "/",
           maxAge: 60 * 60 * 24 * 60,
         });
-        console.log(authExpire);
+        console.log(authExpire, "auth");
       }
     }, 2000);
   },

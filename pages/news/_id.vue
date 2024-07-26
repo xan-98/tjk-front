@@ -5,7 +5,7 @@
       <div class="breadcrumbs">
         <ul>
           <li>
-            <NuxtLink to="/main"> {{ $tr.t("Baş sahypa") }} </NuxtLink>
+            <NuxtLink to="/"> {{ $tr.t("Baş sahypa") }} </NuxtLink>
           </li>
           <li>
             <NuxtLink to="/news"> {{ $tr.t("Täzelikler") }} </NuxtLink>

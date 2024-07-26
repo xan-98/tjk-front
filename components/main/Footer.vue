@@ -89,7 +89,7 @@
 
             <ul>
               <li>
-                <NuxtLink to="/main"> {{ $tr.t("Baş sahypa") }} </NuxtLink>
+                <NuxtLink to="/"> {{ $tr.t("Baş sahypa") }} </NuxtLink>
               </li>
               <li>
                 <NuxtLink to="/about">{{ $tr.t("Biz barada") }}</NuxtLink>

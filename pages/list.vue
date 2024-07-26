@@ -4,7 +4,7 @@
       <div class="breadcrumbs">
         <ul>
           <li>
-            <NuxtLink to="/main"> Baş sahypa </NuxtLink>
+            <NuxtLink to="/"> Baş sahypa </NuxtLink>
           </li>
           <li>
             <NuxtLink to="/"> test </NuxtLink>

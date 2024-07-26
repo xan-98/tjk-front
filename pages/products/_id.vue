@@ -1,12 +1,11 @@
 <template>
   <div class="pr-list">
     <Slider />
-
     <div class="container">
       <div class="breadcrumbs">
         <ul>
           <li>
-            <NuxtLink to="/main"> {{ $tr.t("Baş sahypa") }} </NuxtLink>
+            <NuxtLink to="/"> {{ $tr.t("Baş sahypa") }} </NuxtLink>
           </li>
           <li>
             {{
